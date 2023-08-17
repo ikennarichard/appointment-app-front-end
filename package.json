@@ -20,6 +20,8 @@
     "@babel/preset-env": "7.x",
     "@babel/preset-react": "^7.22.5",
     "@reduxjs/toolkit": "^1.9.5",
+    "@vitejs/plugin-react": "^4.0.3",
+    "axios": "^1.4.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
@@ -33,7 +35,6 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-csstree-validator": "^3.0.0",
     "stylelint-scss": "^5.1.0",
-    "@vitejs/plugin-react": "^4.0.3",
     "vite": "^4.4.5"
   },
   "devDependencies": {
