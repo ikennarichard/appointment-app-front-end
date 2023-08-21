@@ -2,4 +2,20 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+main {
+  padding-right: 0 !important;
+  flex: 1 0 auto !important;
+}
+
+.text-color-414141 {
+  color: #414141;
 }
