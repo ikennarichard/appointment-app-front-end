@@ -3,9 +3,10 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './redux/configureStore';
+import store from './redux/store';
 import Layout from './components/Layout/layout';
 import SignUp from './components/pages/sign_up';
+import Car from './components/cars/Cars';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Main page</div>,
+        element: <Car />,
       },
       {
         path: 'reservations',
