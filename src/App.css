@@ -5,6 +5,12 @@
   font-family: Poppins, sans-serif;
 }
 
+:root {
+  --main-green: #97bf0f;
+  --hover-main-green: #88b100;
+  --white: #fff;
+}
+
 html,
 body,
 #root {
