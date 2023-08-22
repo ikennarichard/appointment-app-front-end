@@ -76,6 +76,18 @@ nav {
   border-radius: 100px;
 }
 
+.sign-out-btn {
+  appearance: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.sign-out-btn:hover {
+  background-color: #97bf0f;
+  color: white;
+}
+
 @media (width <= 992px) {
   .hide-nav {
     transition: 0.5s ease-in-out;

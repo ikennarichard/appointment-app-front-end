@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import Layout from './components/Layout/layout';
+import SignUp from './components/pages/sign_up';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
         element: <div>Delete car</div>,
       },
     ],
+  },
+
+  {
+    path: 'signup',
+    element: <SignUp />,
   },
 ]);
 
