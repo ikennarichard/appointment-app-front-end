@@ -80,7 +80,7 @@ nav {
   appearance: none;
   border: none;
   outline: none;
-  background-color: transparent
+  background-color: transparent;
 }
 
 .sign-out-btn:hover {
