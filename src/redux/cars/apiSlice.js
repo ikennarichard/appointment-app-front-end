@@ -15,14 +15,15 @@ export const getCars = createAsyncThunk('cars/getCars', async () => {
 });
 
 export const addCar = createAsyncThunk('cars/addCar', async ({ userId, details }) => {
-  const response = await fetch(`http://127.0.0.1:3000/users/${userId}/cars`, {
-    method: 'POST',
-    body: JSON.stringify(details),
-    headers: { 'Content-Type': 'application/json' },
-  });
-
-  const data = await response.json();
-  return data;
+  try {
+    const response = await axios.post(`http://127.0.0.1:3000/users/${userId}/cars`, details);
+    if (response.status === 201) {
+      return response.data;
+    }
+  } catch (e) {
+    console.error('Error adding car:', e);
+    throw new Error('An error occured while adding car');
+  }
 });
 
 export const deleteCar = createAsyncThunk('cars/deleteCar', async ({ userId, carId }) => {

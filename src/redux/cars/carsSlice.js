@@ -7,7 +7,7 @@ const carsSlice = createSlice({
     cars: [],
     error: null,
     loading: false,
-    status: false,
+    message: null,
   },
   reducers: {
     deleteCarsArr: (state, action) => {
@@ -17,31 +17,29 @@ const carsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getCars.pending, (state) => {
       state.loading = true;
-      state.status = false;
     });
     builder.addCase(getCars.fulfilled, (state, action) => {
       state.loading = false;
-      state.status = true;
       state.cars = action.payload;
     });
-    builder.addCase(getCars.rejected, (state) => {
+    builder.addCase(getCars.rejected, (state, action) => {
       state.loading = false;
       state.status = false;
+      state.error = action.error.message;
     });
 
     builder.addCase(addCar.pending, (state) => {
       state.loading = true;
-      state.status = false;
-      state.message = 'Adding new car...';
+      state.message = null;
     });
     builder.addCase(addCar.fulfilled, (state) => {
       state.loading = false;
-      state.status = true;
-      state.message = 'Car was added succeefully';
+      state.message = 'Car was added successfully';
     });
-    builder.addCase(addCar.rejected, (state) => {
+    builder.addCase(addCar.rejected, (state, action) => {
       state.loading = false;
-      state.status = false;
+      state.message = null;
+      state.error = action.error.message;
     });
 
     builder.addCase(deleteCar.pending, (state) => {
