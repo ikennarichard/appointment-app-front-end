@@ -10,8 +10,13 @@ const carsSlice = createSlice({
     message: null,
   },
   reducers: {
-    deleteCarsArr: (state, action) => {
+    removeFromCars: (state, action) => {
       state.cars = state.cars.filter((car) => car.id !== action.payload);
+    },
+
+    clearCarMessages: (state) => {
+      state.message = null;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -44,21 +49,22 @@ const carsSlice = createSlice({
 
     builder.addCase(deleteCar.pending, (state) => {
       state.loading = true;
-      state.status = false;
+      state.message = null;
+      state.error = null;
     });
 
-    builder.addCase(deleteCar.fulfilled, (state) => {
+    builder.addCase(deleteCar.fulfilled, (state, action) => {
       state.loading = false;
-      state.status = true;
+      state.message = action.payload;
     });
 
-    builder.addCase(deleteCar.rejected, (state) => {
+    builder.addCase(deleteCar.rejected, (state, action) => {
       state.loading = false;
-      state.status = false;
+      state.error = action.error.message;
     });
   },
 });
 
-export const { deleteCarsArr } = carsSlice.actions;
+export const { removeFromCars, getUserCars, clearCarMessages } = carsSlice.actions;
 
 export default carsSlice.reducer;

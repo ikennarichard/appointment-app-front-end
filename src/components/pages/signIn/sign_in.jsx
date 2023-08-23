@@ -1,9 +1,8 @@
 /* eslint-disable consistent-return */
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { signin, clearError } from '../../../redux/auth/authSlice';
-import styles from './signIn.module.css';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { signin } from '../../../redux/auth/authSlice';
 
 export default function SignIn() {
   const [userDetails, setUserDetails] = useState({
@@ -11,18 +10,7 @@ export default function SignIn() {
     password: '',
   });
   const dispatch = useDispatch();
-  const { error, loading, status } = useSelector((state) => state.auth);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        dispatch(clearError());
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [error, dispatch]);
+  const { error, loading } = useSelector((state) => state.auth);
 
   // handle sign in inputs
   const handleChange = (e) => {
@@ -37,9 +25,6 @@ export default function SignIn() {
   const handleSignin = async (e) => {
     e.preventDefault();
     dispatch(signin(userDetails));
-    if (status) {
-      navigate(0);
-    }
   };
 
   return (

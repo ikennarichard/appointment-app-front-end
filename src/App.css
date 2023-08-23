@@ -25,3 +25,7 @@ main {
 .text-color-414141 {
   color: #414141;
 }
+
+img {
+  width: 500px;
+}
