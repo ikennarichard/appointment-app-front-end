@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signup, clearError } from '../../../redux/auth/authSlice';
+import { signup, clearMessage } from '../../../redux/auth/authSlice';
 import styles from './signUp.module.css';
 import signInStyles from '../signIn/signIn.module.css';
 
@@ -22,7 +22,7 @@ export default function SignupForm() {
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => {
-        dispatch(clearError());
+        dispatch(clearMessage());
       }, 3000);
       return () => clearTimeout(timer);
     }

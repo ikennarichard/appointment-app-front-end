@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { signin } from '../../../redux/auth/authSlice';
+import styles from './signIn.module.css';
 
 export default function SignIn() {
   const [userDetails, setUserDetails] = useState({
