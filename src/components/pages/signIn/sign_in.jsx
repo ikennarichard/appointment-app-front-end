@@ -2,7 +2,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signin } from '../../redux/auth/authSlice';
+import { signin } from '../../../redux/auth/authSlice';
+import styles from './signIn.module.css';
 
 export default function SignIn() {
   const [userDetails, setUserDetails] = useState({
@@ -28,44 +29,48 @@ export default function SignIn() {
   };
 
   return (
-    <div>
+    <main
+      className={`${styles.bg} h-100 d-flex justify-content-center align-items-center flex-column`}
+    >
       {loading && <div>Loading...</div>}
-      <h2>RENTZ</h2>
-      <form method="post" onSubmit={handleSignin}>
-        <div className="input_field">
-          <label htmlFor="email">
-            Email:
+      <h1 className="text-center text-white display-1 fw-bold">The New BMW Z4</h1>
+      <section className={styles['login-form']}>
+        <form method="post" onSubmit={handleSignin} className={styles.form}>
+          <div className={styles['input-field']}>
             <input
               type="email"
               name="email"
               id="email"
+              placeholder="Enter Your Email"
               value={userDetails.email}
               onChange={handleChange}
               required
             />
-          </label>
-        </div>
+          </div>
 
-        <div className="input_field">
-          <label htmlFor="password">
-            Password:
+          <div className={styles['input-field']}>
             <input
               type="password"
               name="password"
               id="password"
+              placeholder="Enter Your Password"
               value={userDetails.password}
               onChange={handleChange}
             />
-          </label>
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Sign In</button>
-      </form>
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <button type="submit" className={styles['sign-in-btn']}>
+            Sign In
+          </button>
+        </form>
 
-      <div className="links">
-        <p>Not yet a user? please sign up</p>
-        <Link to="signup">Sign up</Link>
-      </div>
-    </div>
+        <div className="links mt-3">
+          <p className="text-white mb-1">Not yet a user? please sign up</p>
+          <Link to="signup" className={`${styles['sign-up-link']} text-white`}>
+            Sign up
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

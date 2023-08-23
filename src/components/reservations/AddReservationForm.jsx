@@ -1,15 +1,14 @@
 /*eslint-disable*/
-import { useLocation,useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import { addReservation } from "../../redux/reservations/apiSlice";
-import { getCars } from "../../redux/cars/apiSlice";
+import { useLocation, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { addReservation } from '../../redux/reservations/apiSlice';
+import { getCars } from '../../redux/cars/apiSlice';
 // import { clearMessages } from "../../redux/reservations/reservationsSlice";
 
-
 export default function AddReservation() {
-  const resourceOwner = useSelector(state => state.auth.resource_owner);
-  const cars = useSelector(state => state.cars.cars);
+  const resourceOwner = useSelector((state) => state.auth.resource_owner);
+  const cars = useSelector((state) => state.cars.cars);
   const userId = resourceOwner.id;
   const [selectedCarId, setSelectedCarId] = useState(null);
   const userName = localStorage.getItem('resource_name');
@@ -26,8 +25,8 @@ export default function AddReservation() {
   console.log(reservation);
 
   useEffect(() => {
-    dispatch(getCars())
-  },[])
+    dispatch(getCars());
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,21 +34,23 @@ export default function AddReservation() {
       ...prev,
       [name]: value,
     }));
-    setSelectedCarId(reservation.car_id)
+    setSelectedCarId(reservation.car_id);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   
-    dispatch(addReservation({ 
-      userId,
-      selectedCarId,
-      details: reservation
-  }));
+
+    dispatch(
+      addReservation({
+        userId,
+        selectedCarId,
+        details: reservation,
+      })
+    );
     // navigate('/cars');
   };
 
-  const otherUserCars = cars.filter((car) => car.user.id !== resourceOwner.id);
+  const otherUserCars = cars.filter((car) => car.user_id !== resourceOwner.id);
 
   return (
     <div>
@@ -59,11 +60,11 @@ export default function AddReservation() {
         <div>
           <label htmlFor="city">
             City:
-            <input 
-              value={reservation.car_model} 
-              name="city" 
-              type="text" 
-              id="city" 
+            <input
+              value={reservation.car_model}
+              name="city"
+              type="text"
+              id="city"
               onChange={handleChange}
               required
             />
@@ -73,27 +74,27 @@ export default function AddReservation() {
         <div>
           <label htmlFor="reserve_date">
             Reserve Date:
-            <input 
-              type="date" 
+            <input
+              type="date"
               name="date"
-              value={reservation.date} 
+              value={reservation.date}
               id="reserve_date"
               onChange={handleChange}
-              required 
-              />
+              required
+            />
           </label>
         </div>
 
         <div>
           <label htmlFor="username">
             Username:
-            <input 
-              type="text" 
-              name="user_id" 
-              id="username" 
+            <input
+              type="text"
+              name="user_id"
+              id="username"
               value={userName.toUpperCase()}
               readOnly
-              />
+            />
           </label>
         </div>
 
@@ -113,13 +114,12 @@ export default function AddReservation() {
               ))}
             </select>
           )}
-      </div>
-
+        </div>
 
         <div>
           <button type="submit">Reserve Car</button>
         </div>
       </form>
     </div>
-  )
+  );
 }

@@ -1,0 +1,56 @@
+.bg {
+  background: #ffae00 url('../../../assets/bmw.png') no-repeat center center;
+  background-size: 1000px;
+}
+
+.login-form {
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  padding: 2rem;
+  width: 25%;
+}
+
+.form {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.input-field input {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-radius: 100px;
+  border: none;
+  outline: none;
+}
+
+.sign-in-btn {
+  background-color: var(--main-green);
+  padding: 0.5rem 1.2rem;
+  width: 30%;
+  min-width: 125px;
+  border: none;
+  border-radius: 100px;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: 0.2s ease-in-out;
+}
+
+.sign-in-btn:hover {
+  background-color: var(--btn-hover-main-green);
+}
+
+.sign-up-link:hover {
+  text-decoration: none;
+  color: var(--main-green) !important;
+}
+
+@media (max-width: 920px) {
+  .bg {
+    background-size: contain;
+  }
+
+  .login-form {
+    width: 100%;
+  }
+}

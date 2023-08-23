@@ -1,0 +1,42 @@
+.bg {
+  background: #ffae00 url('../../../assets/porche.png') no-repeat center center;
+  background-size: 1000px;
+}
+
+.sign_in_btn {
+  text-align: start;
+  color: var(--white);
+  width: 60px;
+}
+
+.sign_in_btn:hover {
+  color: var(--main-green);
+  text-decoration: none;
+}
+
+.login_form {
+  width: 25%;
+}
+
+.sign_in_link {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 920px) {
+  .bg {
+    background-size: contain;
+  }
+
+  .login_form {
+    padding: 0 1.5rem;
+    width: 100%;
+  }
+
+  .sign_in_link {
+    width: 100% !important;
+    padding: 0 1.5rem;
+  }
+}

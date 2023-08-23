@@ -5,8 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Layout from './components/Layout/layout';
-import SignUp from './components/pages/sign_up';
-
+import SignUp from './components/pages/signUp/sign_up';
 import Car from './components/cars/Cars';
 import CarDetails from './components/cars/CarDetails';
 import AddCarForm from './components/cars/AddCarForm';
