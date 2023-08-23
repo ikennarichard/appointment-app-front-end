@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+/* eslint-disable consistent-return */
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { signup } from '../../redux/auth/authSlice';
+import { signup, clearError } from '../../redux/auth/authSlice';
 
 export default function SignupForm() {
   const [userDetails, setUserDetails] = useState({
@@ -11,12 +12,21 @@ export default function SignupForm() {
     password_confirmation: '',
   });
 
-  const { loading, status } = useSelector((state) => state.auth);
-
+  const { loading, error } = useSelector((state) => state.auth);
+  const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const user = useSelector((state) => state.user);
-  // const resource_owner = useSelector((state) => state.auth.resource_owner);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        dispatch(clearError());
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+    // go to homepage if theres a user
+    if (resourceOwner) navigate('/');
+  }, [error, dispatch, navigate, resourceOwner]);
 
   // handle input change
   const handleChange = (e) => {
@@ -30,7 +40,6 @@ export default function SignupForm() {
   // handle signup form submission
   const handleSignup = async (e) => {
     e.preventDefault();
-
     if (userDetails.password !== userDetails.password_confirmation) {
       return;
     }
@@ -41,7 +50,6 @@ export default function SignupForm() {
   return (
     <div>
       {loading && <p>Loading....</p>}
-      {status && navigate('/')}
       <h2>RENTZ</h2>
       <form method="post" onSubmit={handleSignup}>
         <div className="input_field">
@@ -103,9 +111,13 @@ export default function SignupForm() {
             />
           </label>
         </div>
-
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit">Sign Up</button>
       </form>
+      <p>If your already registerd please use the link below to sign in</p>
+      <Link to="/">
+        Sign in
+      </Link>
     </div>
   );
 }

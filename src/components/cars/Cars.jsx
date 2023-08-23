@@ -5,7 +5,7 @@ import { getCars } from '../../redux/cars/apiSlice';
 import { getUsername } from '../../redux/auth/authSlice';
 
 export default function Car() {
-  const { cars, loading, status } = useSelector((state) => state.cars);
+  const { cars, loading } = useSelector((state) => state.cars);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const { username } = useSelector((state) => state.auth);
 
@@ -13,9 +13,9 @@ export default function Car() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!status) dispatch(getCars());
+    dispatch(getCars());
     if (!username) dispatch(getUsername(userId));
-  }, [dispatch, status, username, userId]);
+  }, [dispatch, username, userId]);
 
   const isLoading = loading && <p>Loading...</p>;
 
@@ -23,7 +23,7 @@ export default function Car() {
     <div>
       {isLoading}
 
-      {resourceOwner
+      {resourceOwner && cars.length > 0
         ? (
           <section>
             <h2>Latest Cars</h2>

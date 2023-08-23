@@ -1,20 +1,27 @@
-/*eslint-disable*/
-import React from 'react';
+/* eslint-disable consistent-return */
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signin } from '../../redux/auth/authSlice';
+import { signin, clearError } from '../../redux/auth/authSlice';
 
 export default function SignIn() {
-
   const [userDetails, setUserDetails] = useState({
     email: '',
     password: '',
   });
   const dispatch = useDispatch();
-  const { resource_owner, loading, status } = useSelector((state) => state.auth);
+  const { error, loading, status } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        dispatch(clearError());
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error, dispatch]);
 
   // handle sign in inputs
   const handleChange = (e) => {
@@ -23,24 +30,15 @@ export default function SignIn() {
       ...prev,
       [name]: value,
     }));
-
-    console.log(userDetails)
   };
 
   // handle sign in
   const handleSignin = async (e) => {
-    e.preventDefault()
-    console.log(userDetails)
+    e.preventDefault();
     dispatch(signin(userDetails));
     if (status) {
-      navigate(0)
+      navigate(0);
     }
-  };
-
-  // handle sign out
-  const handleSignout = () => {
-    dispatch(resetTokens());
-    navigate('/')
   };
 
   return (
@@ -59,28 +57,29 @@ export default function SignIn() {
               onChange={handleChange}
               required
             />
-            </label>
+          </label>
         </div>
 
         <div className="input_field">
           <label htmlFor="password">
             Password:
             <input
-            type="password"
-            name="password"
-            id="password"
-            value={userDetails.password}
-            onChange={handleChange}
+              type="password"
+              name="password"
+              id="password"
+              value={userDetails.password}
+              onChange={handleChange}
             />
           </label>
         </div>
-
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit">Sign In</button>
       </form>
 
-      <div className='links'>
+      <div className="links">
         <p>Not yet a user? please sign up</p>
-        <Link to='signup'>Sign up</Link>
+        <Link to="signup">Sign up</Link>
       </div>
     </div>
-)}
+  );
+}

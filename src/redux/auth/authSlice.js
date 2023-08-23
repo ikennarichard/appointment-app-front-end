@@ -1,26 +1,42 @@
+/* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const API_URL = 'http://localhost:3000/users/tokens';
 
+// handle sign up
 export const signup = createAsyncThunk('auth/signup', async (userData) => {
-  const response = await fetch(`${API_URL}/sign_up`, {
-    method: 'POST',
-    body: JSON.stringify(userData),
-    headers: { 'Content-Type': 'application/json' },
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await axios.post(`${API_URL}/sign_up`, userData);
+    const data = await response.data;
+    if (response.status === 201) {
+      return data;
+    }
+  } catch (e) {
+    if (e.response) {
+      throw new Error(e.response.data.error_description[0]);
+    }
+    console.error(e);
+    throw new Error('An error occured while signing up');
+  }
 });
 
+// handle sign in
 export const signin = createAsyncThunk('auth/signin', async (userData) => {
-  const response = await fetch(`${API_URL}/sign_in`, {
-    method: 'POST',
-    body: JSON.stringify(userData),
-    headers: { 'Content-Type': 'application/json' },
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await axios.post(`${API_URL}/sign_in`, userData);
+    const data = await response.data;
+    if (response.status === 200) {
+      return data;
+    }
+  } catch (e) {
+    if (e.response) {
+      throw new Error(e.response.data.error_description[0]);
+    }
+    console.error(e);
+    throw new Error('An error occured while signing up');
+  }
 });
 
 export const getUsername = createAsyncThunk('auth/username', async (id) => {
@@ -33,8 +49,9 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     username: null,
-    resource_owner: JSON.parse(localStorage.getItem('resource_owner')),
+    resource_owner: localStorage.getItem('resource_owner') || '',
     loading: false,
+    error: null,
     status: false,
   },
   reducers: {
@@ -45,8 +62,10 @@ const authSlice = createSlice({
       localStorage.removeItem('access_token');
       state.username = null;
       state.resource_owner = null;
-      state.status = false;
       state.loading = false;
+    },
+    clearError: (state) => {
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -54,27 +73,30 @@ const authSlice = createSlice({
       .addCase(signup.pending, (state) => {
         state.status = false;
         state.loading = true;
+        state.error = null;
       })
-      .addCase(signup.rejected, (state) => {
+      .addCase(signup.rejected, (state, action) => {
         state.status = false;
         state.loading = false;
+        state.error = action.error.message;
       })
       .addCase(signup.fulfilled, (state, action) => {
-        const { token, resource_owner, refresh_token } = action.payload;
+        const { resource_owner, refresh_token } = action.payload;
         localStorage.setItem('resource_owner', JSON.stringify(resource_owner));
         localStorage.setItem('refresh_token', refresh_token);
-        localStorage.setItem('access_token', token);
         state.resource_owner = resource_owner;
-        state.status = true;
         state.loading = false;
+        state.error = null;
+        state.status = true;
       })
       .addCase(signin.pending, (state) => {
-        state.status = false;
         state.loading = true;
+        state.status = false;
       })
-      .addCase(signin.rejected, (state) => {
+      .addCase(signin.rejected, (state, action) => {
+        state.loading = false;
         state.status = false;
-        state.loading = true;
+        state.error = action.error.message;
       })
       .addCase(signin.fulfilled, (state, action) => {
         const { token, refresh_token, resource_owner } = action.payload;
@@ -93,6 +115,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { resetTokens } = authSlice.actions;
+export const { resetTokens, clearError } = authSlice.actions;
 
 export default authSlice.reducer;
