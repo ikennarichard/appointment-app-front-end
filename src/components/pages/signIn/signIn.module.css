@@ -37,11 +37,12 @@
 }
 
 .sign-in-btn:hover {
-  background-color: var(--hover-main-green);
+  background-color: var(--btn-hover-main-green);
 }
 
 .sign-up-link:hover {
   text-decoration: none;
+  color: var(--main-green) !important;
 }
 
 @media (max-width: 920px) {
