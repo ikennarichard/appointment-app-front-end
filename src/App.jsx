@@ -8,6 +8,7 @@ import Layout from './components/Layout/layout';
 import SignUp from './components/pages/sign_up';
 import Car from './components/cars/Cars';
 import CarDetails from './components/cars/CarDetails';
+import AddCarForm from './components/cars/AddCarForm';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: 'car/:car_id',
         element: <CarDetails />,
+      },
+      {
+        path: 'newCar',
+        element: <AddCarForm />,
       },
       {
         path: 'reservations',
