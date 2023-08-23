@@ -48,6 +48,7 @@ export default function DeleteCar() {
               {userCars.map((car) => (
                 <div key={car.id}>
                   <br />
+                  <li><img src={car.photo} /></li>
                   <li>
                     <p>{car.car_model}</p>
                     <button
