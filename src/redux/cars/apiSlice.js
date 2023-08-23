@@ -1,15 +1,17 @@
+/* eslint-disable consistent-return */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const getCars = createAsyncThunk('cars/getCars', async () => {
-  const response = await fetch('http://127.0.0.1:3000/cars', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await axios.get('http://127.0.0.1:3000/cars');
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (e) {
+    console.error(e);
+    throw new Error('An error occured while fetching cars');
+  }
 });
 
 export const addCar = createAsyncThunk('cars/addCar', async ({ userId, details }) => {

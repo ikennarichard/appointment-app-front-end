@@ -7,6 +7,7 @@ import store from './redux/store';
 import Layout from './components/Layout/layout';
 import SignUp from './components/pages/sign_up';
 import Car from './components/cars/Cars';
+import CarDetails from './components/cars/CarDetails';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Car />,
+      },
+      {
+        path: 'car/:car_id',
+        element: <CarDetails />,
       },
       {
         path: 'reservations',
