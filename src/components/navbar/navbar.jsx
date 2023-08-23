@@ -35,28 +35,22 @@ function Navbar() {
     header: `${isNavbar ? styles['show-nav'] : styles['hide-nav']} h-100 col-lg-1`,
     button: `${styles['nav-btn']} d-lg-none `,
     routes: {
-      '/': `d-block text-decoration-none ${styles['nav-item']} ${
-        pathname === '/' ? styles.active : ''
+      '/': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/' ? styles.active : ''
       }`,
 
-      '/newReservation': `d-block text-decoration-none ${styles['nav-item']} ${
-        pathname === '/newReservation' ? styles.active : ''
+      '/newReservation': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/newReservation' ? styles.active : ''
       }`,
 
-      '/reservations': `d-block text-decoration-none ${styles['nav-item']} ${
-        pathname === '/reservations' ? styles.active : ''
+      '/reservations': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/reservations' ? styles.active : ''
       }`,
 
-      '/newCar': `d-block text-decoration-none ${styles['nav-item']} ${
-        pathname === '/newCar' ? styles.active : ''
+      '/newCar': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/newCar' ? styles.active : ''
       }`,
 
-      '/deleteCar': `d-block text-decoration-none ${styles['nav-item']} ${
-        pathname === '/deleteCar' ? styles.active : ''
+      '/deleteCar': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/deleteCar' ? styles.active : ''
       }`,
 
-      '/signout': `d-block text-decoration-none ${styles['nav-item']} ${
-        pathname === '/signout' ? styles.active : ''
+      '/signout': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/signout' ? styles.active : ''
       }`,
     },
   };
@@ -72,7 +66,9 @@ function Navbar() {
           <div className="d-flex flex-column ">
             <div className="text-center mt-4">
               <p>
-                {username}
+                Hello,
+                {' '}
+                {username && username.charAt(0).toUpperCase() + username.slice(1)}
               </p>
               <Link
                 to="/"
