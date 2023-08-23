@@ -1,11 +1,25 @@
-import React from 'react';
+/* eslint-disable consistent-return */
+import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../navbar/navbar';
 import SignIn from '../pages/sign_in';
+import { clearMessage } from '../../redux/auth/authSlice';
 
 function Layout() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
+  const { error, message } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  // delete messages after a while
+  useEffect(() => {
+    if (error || message) {
+      const timer = setTimeout(() => {
+        dispatch(clearMessage());
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error, message, dispatch]);
 
   return (
     <div>

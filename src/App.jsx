@@ -6,9 +6,11 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import Layout from './components/Layout/layout';
 import SignUp from './components/pages/sign_up';
+
 import Car from './components/cars/Cars';
 import CarDetails from './components/cars/CarDetails';
 import AddCarForm from './components/cars/AddCarForm';
+import DeleteCar from './components/cars/DeleteCar';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
         element: <AddCarForm />,
       },
       {
+        path: 'deleteCar',
+        element: <DeleteCar />,
+      },
+      {
         path: 'reservations',
         element: <div>Reservations</div>,
       },
@@ -42,10 +48,6 @@ const router = createBrowserRouter([
       {
         path: 'newCar',
         element: <div>Create new car</div>,
-      },
-      {
-        path: 'deleteCar',
-        element: <div>Delete car</div>,
       },
     ],
   },

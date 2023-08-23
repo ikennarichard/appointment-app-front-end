@@ -32,7 +32,7 @@ export const signin = createAsyncThunk('auth/signin', async (userData) => {
     }
   } catch (e) {
     if (e.response) {
-      throw new Error(e.response.data.error_description[0]);
+      throw new Error('Sign in failed, check inputs and try again');
     }
     console.error(e);
     throw new Error('An error occured while signing up');
@@ -52,7 +52,6 @@ const authSlice = createSlice({
     resource_owner: JSON.parse(localStorage.getItem('resource_owner')) || '',
     loading: false,
     error: null,
-    status: false,
   },
   reducers: {
     resetTokens: (state) => {
@@ -64,19 +63,18 @@ const authSlice = createSlice({
       state.resource_owner = null;
       state.loading = false;
     },
-    clearError: (state) => {
+    clearMessage: (state) => {
       state.error = null;
+      state.message = null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(signup.pending, (state) => {
-        state.status = false;
         state.loading = true;
         state.error = null;
       })
       .addCase(signup.rejected, (state, action) => {
-        state.status = false;
         state.loading = false;
         state.error = action.error.message;
       })
@@ -87,15 +85,12 @@ const authSlice = createSlice({
         state.resource_owner = resource_owner;
         state.loading = false;
         state.error = null;
-        state.status = true;
       })
       .addCase(signin.pending, (state) => {
         state.loading = true;
-        state.status = false;
       })
       .addCase(signin.rejected, (state, action) => {
         state.loading = false;
-        state.status = false;
         state.error = action.error.message;
       })
       .addCase(signin.fulfilled, (state, action) => {
@@ -105,7 +100,6 @@ const authSlice = createSlice({
         localStorage.setItem('access_token', token);
         state.resource_owner = resource_owner;
         state.loading = false;
-        state.status = true;
       })
       .addCase(getUsername.fulfilled, (state, action) => {
         const name = action.payload;
@@ -115,6 +109,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { resetTokens, clearError } = authSlice.actions;
+export const { resetTokens, clearMessage } = authSlice.actions;
 
 export default authSlice.reducer;
