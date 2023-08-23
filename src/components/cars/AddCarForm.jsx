@@ -38,68 +38,64 @@ export default function AddCarForm() {
   }, [message, navigate, error]);
 
   return (
-    <>
-      {message && <div style={{ color: 'green' }}>{message}</div>}
-      {error && <div style={{ color: 'red' }}>{error}</div>}
-      <div>
-        <h2>Create a New Car</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="field">
-            <label htmlFor="car_model">
-              Car Model:
-              <input
-                type="text"
-                name="car_model"
-                value={carDetails.car_model}
-                onChange={handleChange}
-                id="car_model"
-                required
-              />
-            </label>
-          </div>
-          <br />
-          <div className="field">
-            <label htmlFor="description">
-              Description:
-              <textarea
-                name="description"
-                value={carDetails.description}
-                onChange={handleChange}
-                id="description"
-                required
-              />
-            </label>
-          </div>
-          <br />
-          <div className="field">
-            <label htmlFor="photo">
-              Photo URL:
-              <input
-                type="text"
-                name="photo"
-                value={carDetails.photo}
-                onChange={handleChange}
-                placeholder="enter a valide image url"
-                id="photo"
-                required
-              />
-            </label>
-          </div>
-          <div className="field">
-            <label htmlFor="reservation_price">
-              Reservation Price:
-              <input
-                type="number"
-                name="reservation_price"
-                value={carDetails.reservation_price}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-          <button type="submit">Add Car</button>
-        </form>
-      </div>
-    </>
+    <div>
+      <h2>Create a New Car</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="field">
+          <label htmlFor="car_model">
+            Car Model:
+            <input
+              type="text"
+              name="car_model"
+              value={carDetails.car_model}
+              onChange={handleChange}
+              id="car_model"
+              required
+            />
+          </label>
+        </div>
+        <br />
+        <div className="field">
+          <label htmlFor="description">
+            Description:
+            <textarea
+              name="description"
+              value={carDetails.description}
+              onChange={handleChange}
+              id="description"
+              required
+            />
+          </label>
+        </div>
+        <br />
+        <div className="field">
+          <label htmlFor="photo">
+            Photo URL:
+            <input
+              type="text"
+              name="photo"
+              value={carDetails.photo}
+              onChange={handleChange}
+              placeholder="enter a valide image url"
+              id="photo"
+              required
+            />
+          </label>
+        </div>
+        <div className="field">
+          <label htmlFor="reservation_price">
+            Reservation Price:
+            <input
+              type="number"
+              name="reservation_price"
+              value={carDetails.reservation_price}
+              onChange={handleChange}
+              required
+            />
+          </label>
+        </div>
+        <button type="submit">Add Car</button>
+      </form>
+    </div>
   );
 }

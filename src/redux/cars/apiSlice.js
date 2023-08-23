@@ -29,7 +29,9 @@ export const addCar = createAsyncThunk('cars/addCar', async ({ userId, details }
 export const deleteCar = createAsyncThunk('cars/deleteCar', async ({ userId, carId }) => {
   try {
     const response = await axios.delete(`http://127.0.0.1:3000/users/${userId}/cars/${carId}`);
-    return response.status;
+    if (response.statusText === 'OK') {
+      return 'Car deleted successfully';
+    }
   } catch (error) {
     throw new Error(error);
   }

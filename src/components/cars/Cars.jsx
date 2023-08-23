@@ -1,11 +1,18 @@
+/* eslint-disable consistent-return */
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCars } from '../../redux/cars/apiSlice';
 import { getUsername } from '../../redux/auth/authSlice';
 
 export default function Car() {
-  const { cars, loading } = useSelector((state) => state.cars);
+  const [showMessage, setShowMessage] = useState(false);
+  const {
+    cars,
+    loading,
+    message,
+    error,
+  } = useSelector((state) => state.cars);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const { username } = useSelector((state) => state.auth);
 
@@ -14,16 +21,30 @@ export default function Car() {
 
   useEffect(() => {
     dispatch(getCars());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (!username) dispatch(getUsername(userId));
   }, [dispatch, username, userId]);
+
+  // delete messages after a while
+  useEffect(() => {
+    if (message || error) {
+      setShowMessage(true);
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error, message]);
 
   const isLoading = loading && <p>Loading...</p>;
 
   return (
     <div>
       {isLoading}
-
-      {resourceOwner && cars.length > 0
+      {showMessage && <p>{message}</p>}
+      {(resourceOwner && cars.length > 0)
         ? (
           <section>
             <h2>Latest Cars</h2>
