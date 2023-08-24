@@ -38,7 +38,7 @@ export const signin = createAsyncThunk('auth/signin', async (userData) => {
     }
   } catch (e) {
     if (e.response) {
-      throw new Error('Sign in failed, check inputs and try again');
+      throw new Error('Sign in failed, email or password invalid');
     }
     console.error(e);
     throw new Error('An error occured while signing in');
