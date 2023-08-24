@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getCars } from '../../redux/cars/apiSlice';
 import { clearCarMessages } from '../../redux/cars/carsSlice';
+import { getUsername } from '../../redux/auth/authSlice';
 
 export default function Car() {
   const {
@@ -22,10 +23,15 @@ export default function Car() {
   // delete messages after a while
   useEffect(() => {
     if (message || error) {
-      setTimeout(() => dispatch(clearCarMessages()), 3000);
+      setTimeout(() => dispatch(clearCarMessages()), 600);
       return () => clearTimeout();
     }
   }, [error, message, dispatch]);
+
+  // check for username (it must be there, else something is wrong)
+  useEffect(() => {
+    if (resourceOwner) dispatch(getUsername(resourceOwner.id));
+  }, [dispatch, resourceOwner]);
 
   const isLoading = loading && <p>Loading...</p>;
 
