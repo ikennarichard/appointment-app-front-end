@@ -14,7 +14,7 @@ export const getCars = createAsyncThunk('cars/getCars', async () => {
       return response.data;
     }
   } catch (e) {
-    console.error(e);
+    console.error(e.response.data.error);
     throw new Error('An error occured while fetching cars');
   }
 });
@@ -59,8 +59,9 @@ export const deleteCar = createAsyncThunk(
       if (response.statusText === 'OK') {
         return 'Car deleted successfully';
       }
-    } catch (error) {
-      throw new Error(error);
+    } catch (e) {
+      console.error(e);
+      throw new Error('An error occured while deleting car!');
     }
   },
 );

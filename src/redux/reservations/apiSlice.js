@@ -4,7 +4,12 @@ import axios from 'axios';
 
 export const getReservations = createAsyncThunk('reservations/getAllReservations', async (id) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:3000/users/${id}/reservations`);
+    const response = await axios.get(`http://127.0.0.1:3000/users/${id}/reservations`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      },
+    });
     if (response.status === 200) {
       return response.data;
     }
@@ -16,10 +21,13 @@ export const getReservations = createAsyncThunk('reservations/getAllReservations
 
 export const addReservation = createAsyncThunk('reservations/addReservation', async ({ userId, carId, details }) => {
   try {
-    const response = await axios.post(`http://127.0.0.1:3000/users/${userId}/cars/${carId}/reservations`, details);
+    const response = await axios.post(`http://127.0.0.1:3000/users/${userId}/cars/${carId}/reservations`, details, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      },
+    });
     if (response.status === 201) {
-      console.log('Car was added');
-      console.log(response.data);
       return response.data;
     }
   } catch (error) {
