@@ -1,5 +1,6 @@
-/*eslint-disable*/
-import { useLocation, useParams } from 'react-router-dom';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable consistent-return */
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { addReservation } from '../../redux/reservations/apiSlice';
@@ -15,6 +16,7 @@ export default function AddReservation() {
   const userName = localStorage.getItem('resource_name');
   const { state } = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [reservation, setReservations] = useState({
     city: '',
@@ -25,12 +27,16 @@ export default function AddReservation() {
 
   useEffect(() => {
     dispatch(getCars());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (message === 'Reservation added successfully') navigate(0);
+  }, [message, navigate]);
 
   // delete messages after a while
   useEffect(() => {
     if (message || error) {
-      setTimeout(() => dispatch(clearResMessages()), 3000);
+      setTimeout(() => dispatch(clearResMessages()), 600);
       return () => clearTimeout();
     }
   }, [error, message, dispatch]);
@@ -52,7 +58,7 @@ export default function AddReservation() {
         userId,
         selectedCarId,
         details: reservation,
-      })
+      }),
     );
   };
 
