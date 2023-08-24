@@ -1,12 +1,11 @@
 /* eslint-disable consistent-return */
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getCars } from '../../redux/cars/apiSlice';
-import { getUsername } from '../../redux/auth/authSlice';
+import { clearCarMessages } from '../../redux/cars/carsSlice';
 
 export default function Car() {
-  const [showMessage, setShowMessage] = useState(false);
   const {
     cars,
     loading,
@@ -14,36 +13,26 @@ export default function Car() {
     error,
   } = useSelector((state) => state.cars);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
-  const { username } = useSelector((state) => state.auth);
-
-  const userId = resourceOwner.id;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCars());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (!username) dispatch(getUsername(userId));
-  }, [dispatch, username, userId]);
-
   // delete messages after a while
   useEffect(() => {
     if (message || error) {
-      setShowMessage(true);
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 3000);
-      return () => clearTimeout(timer);
+      setTimeout(() => dispatch(clearCarMessages()), 3000);
+      return () => clearTimeout();
     }
-  }, [error, message]);
+  }, [error, message, dispatch]);
 
   const isLoading = loading && <p>Loading...</p>;
 
   return (
     <div>
       {isLoading}
-      {showMessage && <p>{message}</p>}
+      {message && <p>{message}</p>}
       {(resourceOwner && cars.length > 0)
         ? (
           <section>
@@ -76,7 +65,7 @@ export default function Car() {
         : (
           <div>
             <p>No car available!</p>
-            <Link to="add_car">
+            <Link to="newCar">
               <button type="button">Add a Car</button>
             </Link>
           </div>
