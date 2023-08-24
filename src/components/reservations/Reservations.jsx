@@ -41,7 +41,7 @@ export default function Reservation() {
         <div>
           No reservations
           click link to
-          <Link to="newReservation">Add Reservation</Link>
+          <Link to="/newReservation">Add Reservation</Link>
         </div>
       ) : (
         <ul>
