@@ -1,7 +1,9 @@
 import { useLocation, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function CarDetails() {
   const { state } = useLocation();
+  const resourceOwner = useSelector((state) => state.auth.resource_owner);
 
   const details = {
     ...state,
@@ -17,9 +19,10 @@ export default function CarDetails() {
         to="add_reservation"
         state={details}
       >
-        <button type="button">
-          Reserve
-        </button>
+        {
+          state.user_id === resourceOwner.id
+            ? '' : <button type="button"> Reserve </button>
+        }
       </Link>
     </section>
   );
