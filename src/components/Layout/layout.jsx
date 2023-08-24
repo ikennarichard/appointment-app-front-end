@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../navbar/navbar';
 import SignIn from '../pages/signIn/sign_in';
-import { clearMessage, getUsername } from '../../redux/auth/authSlice';
+import { clearMessage } from '../../redux/auth/authSlice';
 
 function Layout() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
@@ -20,11 +20,6 @@ function Layout() {
       return () => clearTimeout(timer);
     }
   }, [error, message, dispatch]);
-
-  // check for username (it must be there, else something is wrong)
-  useEffect(() => {
-    if (resourceOwner) dispatch(getUsername());
-  }, [dispatch, resourceOwner]);
 
   if (resourceOwner) {
     return (
