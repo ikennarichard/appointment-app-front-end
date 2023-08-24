@@ -23,7 +23,7 @@ export default function DeleteCar() {
   // delete messages after a while
   useEffect(() => {
     if (message || error) {
-      setTimeout(() => dispatch(clearCarMessages()), 3000);
+      setTimeout(() => dispatch(clearCarMessages()), 1000);
       return () => clearTimeout();
     }
   }, [error, message, dispatch]);
