@@ -34,13 +34,13 @@ export default function AddCarForm() {
   };
 
   useEffect(() => {
-    // if (message === 'Car was added successfully') navigate(0);
-  }, [message, navigate, error]);
+    if (message === 'Car was added successfully') navigate(0);
+  }, [message, navigate]);
 
   // delete messages after a while
   useEffect(() => {
     if (message || error) {
-      setTimeout(() => dispatch(clearCarMessages()), 3000);
+      setTimeout(() => dispatch(clearCarMessages()), 1000);
       return () => clearTimeout();
     }
   }, [error, message, dispatch]);
@@ -89,7 +89,7 @@ export default function AddCarForm() {
               name="photo"
               value={carDetails.photo}
               onChange={handleChange}
-              placeholder="enter a valide image url"
+              placeholder="Enter a valid image url"
               id="photo"
               required
             />
