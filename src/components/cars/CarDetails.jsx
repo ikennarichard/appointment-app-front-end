@@ -3,7 +3,9 @@ import { useLocation, Link } from 'react-router-dom';
 export default function CarDetails() {
   const { state } = useLocation();
 
-  const carName = state.car_model;
+  const details = {
+    ...state,
+  };
 
   return (
     <section>
@@ -13,7 +15,7 @@ export default function CarDetails() {
       <b>{`Reservation Price: ${state.reservation_price}`}</b>
       <Link
         to="add_reservation"
-        state={carName}
+        state={details}
       >
         <button type="button">
           Reserve
