@@ -14,7 +14,7 @@ export default function SignupForm() {
     password_confirmation: '',
   });
 
-  const { loading, error } = useSelector((state) => state.auth);
+  const { loading, error, message } = useSelector((state) => state.auth);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,6 +54,7 @@ export default function SignupForm() {
       className={`${styles.bg} h-100 d-flex justify-content-center align-items-center flex-column text-white`}
     >
       {loading && <p>Loading....</p>}
+      {message && <p>{message}</p>}
       <h1 className="display-1 fw-bold mb-3 text-center">Choose Your Type Of Car</h1>
       <form
         method="post"
