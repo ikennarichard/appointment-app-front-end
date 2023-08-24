@@ -1,12 +1,13 @@
+/* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addCar } from '../../redux/cars/apiSlice';
+import { clearCarMessages } from '../../redux/cars/carsSlice';
 
 export default function AddCarForm() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
-  const { message, error } = useSelector((state) => state.cars);
-
+  const { message, error, loading } = useSelector((state) => state.cars);
   const [carDetails, setCarDetails] = useState({
     car_model: '',
     description: '',
@@ -16,7 +17,6 @@ export default function AddCarForm() {
   });
 
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
   const userId = resourceOwner.id;
 
@@ -34,11 +34,24 @@ export default function AddCarForm() {
   };
 
   useEffect(() => {
-    if (message === 'Car was added successfully') navigate('/');
-  }, [message, navigate, error]);
+    if (message === 'Car was added successfully') navigate(0);
+  }, [message, navigate]);
+
+  // delete messages after a while
+  useEffect(() => {
+    if (message || error) {
+      setTimeout(() => dispatch(clearCarMessages()), 1000);
+      return () => clearTimeout();
+    }
+  }, [error, message, dispatch]);
 
   return (
     <div>
+      <div className="messages">
+        {message && <p>{message}</p>}
+        {error && <p>{error}</p>}
+        {loading && <p>{loading}</p>}
+      </div>
       <h2>Create a New Car</h2>
       <form onSubmit={handleSubmit}>
         <div className="field">
@@ -76,7 +89,7 @@ export default function AddCarForm() {
               name="photo"
               value={carDetails.photo}
               onChange={handleChange}
-              placeholder="enter a valide image url"
+              placeholder="Enter a valid image url"
               id="photo"
               required
             />

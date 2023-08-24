@@ -8,12 +8,14 @@ const reservationsSlice = createSlice({
   initialState: {
     reservations: [],
     message: null,
+    error: null,
     loading: false,
   },
 
   reducers: {
-    clearMessages: (state) => {
+    clearResMessages: (state) => {
       state.message = null;
+      state.error = null;
     }
   },
     extraReducers: (builder) => {
@@ -34,19 +36,22 @@ const reservationsSlice = createSlice({
       builder.addCase(addReservation.pending, (state) => {
         state.loading = true;
         state.message = null;
+        state.error = null;
       })
 
       builder.addCase(addReservation.fulfilled, (state) => {
         state.loading = false;
         state.message = 'Reservation added successfully'
+        state.error = null;
       })
 
-      builder.addCase(addReservation.rejected, (state) => {
+      builder.addCase(addReservation.rejected, (state, action) => {
         state.loading = false;
         state.message = null;
+        state.error = action.error.message
       })
     }
 })
 
-export const { clearMessages } = reservationsSlice.actions;
+export const { clearMessages, clearResMessages } = reservationsSlice.actions;
 export default reservationsSlice.reducer

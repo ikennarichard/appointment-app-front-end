@@ -5,6 +5,12 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:3000/users/tokens';
 
+export const getUsername = createAsyncThunk('auth/username', async (id) => {
+  const res = await axios.get(`http://localhost:3000/users/${id}/name`);
+  const data = await res.data;
+  return data.name;
+});
+
 // handle sign up
 export const signup = createAsyncThunk('auth/signup', async (userData) => {
   try {
@@ -32,26 +38,21 @@ export const signin = createAsyncThunk('auth/signin', async (userData) => {
     }
   } catch (e) {
     if (e.response) {
-      throw new Error('Sign in failed, check inputs and try again');
+      throw new Error('Sign in failed, email or password invalid');
     }
     console.error(e);
-    throw new Error('An error occured while signing up');
+    throw new Error('An error occured while signing in');
   }
-});
-
-export const getUsername = createAsyncThunk('auth/username', async (id) => {
-  const response = await fetch(`http://localhost:3000/users/${id}/name`);
-  const data = await response.json();
-  return data.name;
 });
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     username: null,
-    resource_owner: JSON.parse(localStorage.getItem('resource_owner')) || '',
+    resource_owner: JSON.parse(localStorage.getItem('resource_owner')),
     loading: false,
     error: null,
+    message: null,
   },
   reducers: {
     resetTokens: (state) => {
@@ -60,6 +61,8 @@ const authSlice = createSlice({
       localStorage.removeItem('resource_name');
       localStorage.removeItem('access_token');
       state.username = null;
+      state.error = null;
+      state.message = null;
       state.resource_owner = null;
       state.loading = false;
     },
@@ -72,19 +75,20 @@ const authSlice = createSlice({
     builder
       .addCase(signup.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(signup.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
       .addCase(signup.fulfilled, (state, action) => {
-        const { resource_owner, refresh_token } = action.payload;
+        const { resource_owner, refresh_token, token } = action.payload;
         localStorage.setItem('resource_owner', JSON.stringify(resource_owner));
         localStorage.setItem('refresh_token', refresh_token);
+        localStorage.setItem('access_token', token);
         state.resource_owner = resource_owner;
         state.loading = false;
         state.error = null;
+        state.message = 'Sign up successfull, please log into your account';
       })
       .addCase(signin.pending, (state) => {
         state.loading = true;

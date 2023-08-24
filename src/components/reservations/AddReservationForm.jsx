@@ -1,19 +1,22 @@
-/*eslint-disable*/
-import { useLocation, useParams } from 'react-router-dom';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable consistent-return */
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { addReservation } from '../../redux/reservations/apiSlice';
 import { getCars } from '../../redux/cars/apiSlice';
-// import { clearMessages } from "../../redux/reservations/reservationsSlice";
+import { clearResMessages } from '../../redux/reservations/reservationsSlice';
 
 export default function AddReservation() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
+  const { error, message } = useSelector((state) => state.reservation);
   const cars = useSelector((state) => state.cars.cars);
   const userId = resourceOwner.id;
   const [selectedCarId, setSelectedCarId] = useState(null);
   const userName = localStorage.getItem('resource_name');
   const { state } = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [reservation, setReservations] = useState({
     city: '',
@@ -22,11 +25,21 @@ export default function AddReservation() {
     car_id: state !== null ? state.id : null,
   });
 
-  console.log(reservation);
-
   useEffect(() => {
     dispatch(getCars());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (message === 'Reservation added successfully') navigate(0);
+  }, [message, navigate]);
+
+  // delete messages after a while
+  useEffect(() => {
+    if (message || error) {
+      setTimeout(() => dispatch(clearResMessages()), 600);
+      return () => clearTimeout();
+    }
+  }, [error, message, dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,16 +58,16 @@ export default function AddReservation() {
         userId,
         selectedCarId,
         details: reservation,
-      })
+      }),
     );
-    // navigate('/cars');
   };
 
   const otherUserCars = cars.filter((car) => car.user_id !== resourceOwner.id);
 
   return (
     <div>
-      {/* {message && <p>{message}</p>} */}
+      {message && <p>{message}</p>}
+      {error && <p>{error}</p>}
       <h2>Add Reservation</h2>
       <form method="post" onSubmit={handleSubmit}>
         <div>
