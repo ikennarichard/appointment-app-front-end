@@ -9,12 +9,12 @@ export const navLinks = [
   },
   {
     id: uuidv4(),
-    name: 'reservetion',
+    name: 'reservation',
     route: '/newReservation',
   },
   {
     id: uuidv4(),
-    name: 'My Reservestions',
+    name: 'My Reservations',
     route: '/reservations',
   },
   {
