@@ -25,7 +25,7 @@ export default function Reservation() {
     const carPhotos = {};
     cars.forEach((car) => {
       carDetails[car.id] = car.car_model;
-      carDetails[car.id] = car.photo;
+      carPhotos[car.id] = car.photo;
     });
     setReservedCars(carDetails);
     setReservedCarPhotos(carPhotos);
