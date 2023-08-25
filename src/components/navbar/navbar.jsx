@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetTokens, getUsername } from '../../redux/auth/authSlice';
+import { resetTokens } from '../../redux/auth/authSlice';
+import { getUsername } from '../../redux/auth/apiSlice';
 import styles from './navbar.module.css';
 import twitterIcon from '../../assets/twitter.svg';
 import facebookIcon from '../../assets/facebook.svg';

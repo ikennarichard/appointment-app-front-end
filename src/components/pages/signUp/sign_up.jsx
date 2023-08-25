@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signup, clearMessage } from '../../../redux/auth/authSlice';
+import { clearMessage } from '../../../redux/auth/authSlice';
+import { signup } from '../../../redux/auth/apiSlice';
 import styles from './signUp.module.css';
 import signInStyles from '../signIn/signIn.module.css';
 

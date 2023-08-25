@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getCars } from '../../redux/cars/apiSlice';
 import { clearCarMessages } from '../../redux/cars/carsSlice';
-import { getUsername } from '../../redux/auth/authSlice';
+import { getUsername } from '../../redux/auth/apiSlice';
 
 export default function Car() {
   const {
