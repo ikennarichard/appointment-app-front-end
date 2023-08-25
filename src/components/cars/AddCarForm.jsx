@@ -101,6 +101,7 @@ export default function AddCarForm() {
             <input
               type="number"
               name="reservation_price"
+              id="reservation_price"
               value={carDetails.reservation_price}
               onChange={handleChange}
               required
