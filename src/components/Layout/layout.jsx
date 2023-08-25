@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../navbar/navbar';
 import SignIn from '../pages/signIn/sign_in';
 import { clearMessage } from '../../redux/auth/authSlice';
+import CentralComponent from './CentralComponent';
 
 function Layout() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
@@ -24,6 +25,7 @@ function Layout() {
   if (resourceOwner) {
     return (
       <div className="container-fluid h-100">
+        <CentralComponent />
         <div className="row h-100">
           <Navbar />
           <main className="col-12 col-lg-9 col-md-7">

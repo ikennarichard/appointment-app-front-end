@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addCar } from '../../redux/cars/apiSlice';
 import { clearCarMessages } from '../../redux/cars/carsSlice';
+import CentralComponent from '../Layout/CentralComponent';
 
 export default function AddCarForm() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
@@ -47,6 +48,7 @@ export default function AddCarForm() {
 
   return (
     <div>
+      <CentralComponent />
       <div className="messages">
         {message && <p>{message}</p>}
         {error && <p>{error}</p>}

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getReservations } from '../../redux/reservations/apiSlice';
 import { getCars } from '../../redux/cars/apiSlice';
+import CentralComponent from '../Layout/CentralComponent';
 
 export default function Reservation() {
   const { reservations, loading } = useSelector((state) => state.reservation);
@@ -35,6 +36,7 @@ export default function Reservation() {
 
   return (
     <div>
+      <CentralComponent />
       <h3>Reservations</h3>
       {isLoading && <div>Loading...</div>}
       {reservations.length === 0 ? (

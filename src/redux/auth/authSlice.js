@@ -1,18 +1,18 @@
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const API_URL = 'http://localhost:3000/users/tokens';
+const API_URL = "http://localhost:3000/users/tokens";
 
-export const getUsername = createAsyncThunk('auth/username', async (id) => {
+export const getUsername = createAsyncThunk("auth/username", async (id) => {
   const res = await axios.get(`http://localhost:3000/users/${id}/name`);
   const data = await res.data;
   return data.name;
 });
 
 // handle sign up
-export const signup = createAsyncThunk('auth/signup', async (userData) => {
+export const signup = createAsyncThunk("auth/signup", async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/sign_up`, userData);
     const data = await response.data;
@@ -24,12 +24,12 @@ export const signup = createAsyncThunk('auth/signup', async (userData) => {
       throw new Error(e.response.data.error_description[0]);
     }
     console.error(e);
-    throw new Error('An error occured while signing up');
+    throw new Error("An error occured while signing up");
   }
 });
 
 // handle sign in
-export const signin = createAsyncThunk('auth/signin', async (userData) => {
+export const signin = createAsyncThunk("auth/signin", async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/sign_in`, userData);
     const data = await response.data;
@@ -38,28 +38,29 @@ export const signin = createAsyncThunk('auth/signin', async (userData) => {
     }
   } catch (e) {
     if (e.response) {
-      throw new Error('Sign in failed, email or password invalid');
+      throw new Error("Sign in failed, email or password invalid");
     }
     console.error(e);
-    throw new Error('An error occured while signing in');
+    throw new Error("An error occured while signing in");
   }
 });
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
     username: null,
-    resource_owner: JSON.parse(localStorage.getItem('resource_owner')),
+    resource_owner: JSON.parse(localStorage.getItem("resource_owner")),
     loading: false,
     error: null,
     message: null,
   },
   reducers: {
     resetTokens: (state) => {
-      localStorage.removeItem('refresh_token');
-      localStorage.removeItem('resource_owner');
-      localStorage.removeItem('resource_name');
-      localStorage.removeItem('access_token');
+      localStorage.removeItem("refresh_token");
+      localStorage.removeItem("resource_owner");
+      localStorage.removeItem("resource_name");
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("expires_in"); //added this so that it removes the expires_in from local storage on logout.
       state.username = null;
       state.error = null;
       state.message = null;
@@ -82,13 +83,14 @@ const authSlice = createSlice({
       })
       .addCase(signup.fulfilled, (state, action) => {
         const { resource_owner, refresh_token, token } = action.payload;
-        localStorage.setItem('resource_owner', JSON.stringify(resource_owner));
-        localStorage.setItem('refresh_token', refresh_token);
-        localStorage.setItem('access_token', token);
+        localStorage.setItem("resource_owner", JSON.stringify(resource_owner));
+        localStorage.setItem("refresh_token", refresh_token);
+        localStorage.setItem("access_token", token);
+        localStorage.setItem("expires_in", Date.now() + 3600000); //added this, converts miliseconds to hours, one hour in this case.
         state.resource_owner = resource_owner;
         state.loading = false;
         state.error = null;
-        state.message = 'Sign up successfull, please log into your account';
+        state.message = "Sign up successfull, please log into your account";
       })
       .addCase(signin.pending, (state) => {
         state.loading = true;
@@ -99,15 +101,16 @@ const authSlice = createSlice({
       })
       .addCase(signin.fulfilled, (state, action) => {
         const { token, refresh_token, resource_owner } = action.payload;
-        localStorage.setItem('resource_owner', JSON.stringify(resource_owner));
-        localStorage.setItem('refresh_token', refresh_token);
-        localStorage.setItem('access_token', token);
+        localStorage.setItem("resource_owner", JSON.stringify(resource_owner));
+        localStorage.setItem("refresh_token", refresh_token);
+        localStorage.setItem("access_token", token);
+        localStorage.setItem("expires_in", Date.now() + 3600000); //added this converts miliseconds to hours, one hour in this case.
         state.resource_owner = resource_owner;
         state.loading = false;
       })
       .addCase(getUsername.fulfilled, (state, action) => {
         const name = action.payload;
-        localStorage.setItem('resource_name', name);
+        localStorage.setItem("resource_name", name);
         state.username = name;
       });
   },

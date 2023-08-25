@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { getCars } from '../../redux/cars/apiSlice';
 import { clearCarMessages } from '../../redux/cars/carsSlice';
 import { getUsername } from '../../redux/auth/authSlice';
+import CentralComponent from '../Layout/CentralComponent';
 
 export default function Car() {
   const {
@@ -37,6 +38,7 @@ export default function Car() {
 
   return (
     <div>
+      <CentralComponent />
       {isLoading}
       {message && <p>{message}</p>}
       {(resourceOwner && cars.length > 0)

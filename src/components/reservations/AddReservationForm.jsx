@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { addReservation } from '../../redux/reservations/apiSlice';
 import { getCars } from '../../redux/cars/apiSlice';
 import { clearResMessages } from '../../redux/reservations/reservationsSlice';
+import CentralComponent from '../Layout/CentralComponent';
 
 export default function AddReservation() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
@@ -66,6 +67,7 @@ export default function AddReservation() {
 
   return (
     <div>
+      <CentralComponent />
       {message && <p>{message}</p>}
       {error && <p>{error}</p>}
       <h2>Add Reservation</h2>
