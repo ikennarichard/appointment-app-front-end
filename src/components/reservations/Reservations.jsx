@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getReservations } from '../../redux/reservations/apiSlice';
 import { getCars } from '../../redux/cars/apiSlice';
+import styles from './reservations.module.css';
 
 export default function Reservation() {
   const { reservations, loading } = useSelector((state) => state.reservation);
@@ -34,34 +35,40 @@ export default function Reservation() {
   const isLoading = loading && <p>Loading...</p>;
 
   return (
-    <div>
-      <h3>Reservations</h3>
+    <div className="mt-5 d-flex flex-column gap-4">
+      <h1 className="text-center fw-bold display-5">Reservations</h1>
       {isLoading && <div>Loading...</div>}
       {reservations.length === 0 ? (
         <div>
-          No reservations
-          click link to
+          No reservations click link to
           <Link to="/newReservation">Add Reservation</Link>
         </div>
       ) : (
-        <ul>
+        <ul className="list-unstyled px-5">
           {reservations.map((item) => (
-            <li key={item.id}>
-              <div>
+            <li key={item.id} className={styles['reservation-item']}>
+              <div className={styles['image-container']}>
                 <img
                   src={`${reservedCarPhotos[item.car_id]}`}
                   alt={`a nice ${reservedCars[item.car_id]}`}
+                  className={styles.image}
                 />
-                <p>{item.city}</p>
-                <p>{item.date}</p>
-                <p>{reservedCars[item.car_id]}</p>
               </div>
-              <br />
+              <div className={styles['reservation-details']}>
+                <p className="m-0 fs-1 fw-bold">{reservedCars[item.car_id]}</p>
+                <p className="m-0">
+                  City:
+                  {item.city}
+                </p>
+                <p className="m-0">
+                  Reservation Date:
+                  {item.date}
+                </p>
+              </div>
             </li>
           ))}
         </ul>
       )}
     </div>
-
   );
 }

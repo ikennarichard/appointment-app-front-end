@@ -1,4 +1,4 @@
-#add_reservation {
+#add-reservation {
   min-height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
   color: #3e3e3e;
 }
 
-.form_container {
+.form-container {
   border-radius: 1rem;
   width: 100%;
   display: flex;
@@ -26,13 +26,13 @@
   flex: 2 0 auto;
 }
 
-.form_inputs {
+.form-inputs {
   background-color: rgb(50 50 50 / 30%);
   padding: 3rem;
   border-radius: 0.5rem;
 }
 
-.reservation_submit_btn {
+.reservation-submit-btn {
   background-color: var(--main-green);
   color: white;
   font-weight: 500;
@@ -40,16 +40,62 @@
   transition: 0.2s ease-in;
 }
 
-.reservation_submit_btn:hover {
+.reservation-submit-btn:hover {
   background-color: var(--btn-hover-main-green);
 }
 
+.error-message {
+  background-color: red;
+  color: var(--white);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.reservation-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  background-color: var(--main-green);
+  color: var(--white);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: 0.2s ease-in-out;
+}
+
+.reservation-item:hover {
+  box-shadow: rgb(9 30 66 / 25%) 0 4px 8px -2px, rgb(9 30 66 / 8%) 0 0 0 1px;
+}
+
+.image-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 0.5rem;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.reservation-details {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
 @media (width <= 992px) {
-  .form_container {
+  .form-container {
     padding: 1rem;
   }
 
-  .form_inputs {
+  .form-inputs {
     width: 100% !important;
     padding: 1.2rem;
   }
