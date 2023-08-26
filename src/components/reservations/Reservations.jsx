@@ -44,7 +44,7 @@ export default function Reservation() {
           <Link to="/newReservation">Add Reservation</Link>
         </div>
       ) : (
-        <ul className="list-unstyled px-5">
+        <ul className="list-unstyled px-lg-5 px-3">
           {reservations.map((item) => (
             <li key={item.id} className={styles['reservation-item']}>
               <div className={styles['image-container']}>
@@ -56,14 +56,15 @@ export default function Reservation() {
               </div>
               <div className={styles['reservation-details']}>
                 <p className="m-0 fs-1 fw-bold">{reservedCars[item.car_id]}</p>
-                <p className="m-0">
-                  City:
-                  {item.city}
-                </p>
-                <p className="m-0">
-                  Reservation Date:
-                  {item.date}
-                </p>
+                <hr className={styles['horizontal-line']} />
+                <div className="m-0">
+                  <span>City: </span>
+                  <span>{item.city}</span>
+                </div>
+                <div className="m-0 text-break">
+                  <span>Reservation Date: </span>
+                  <span>{item.date}</span>
+                </div>
               </div>
             </li>
           ))}
