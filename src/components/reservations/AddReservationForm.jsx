@@ -59,7 +59,7 @@ export default function AddReservation() {
         userId,
         selectedCarId,
         details: reservation,
-      })
+      }),
     );
   };
 

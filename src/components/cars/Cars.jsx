@@ -15,7 +15,9 @@ import instagram from '../../assets/instagram.svg';
 import twitter from '../../assets/car-list-twitter.svg';
 
 export default function Car() {
-  const { cars, loading, message, error } = useSelector((state) => state.cars);
+  const {
+    cars, loading, message, error,
+  } = useSelector((state) => state.cars);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const dispatch = useDispatch();
 
