@@ -1,0 +1,56 @@
+#add_reservation {
+  min-height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.title {
+  flex: 1 0 auto;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3e3e3e;
+}
+
+.form_container {
+  border-radius: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  flex: 2 0 auto;
+}
+
+.form_inputs {
+  background-color: rgb(50 50 50 / 30%);
+  padding: 3rem;
+  border-radius: 0.5rem;
+}
+
+.reservation_submit_btn {
+  background-color: var(--main-green);
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: 0.2s ease-in;
+}
+
+.reservation_submit_btn:hover {
+  background-color: var(--btn-hover-main-green);
+}
+
+@media (width <= 992px) {
+  .form_container {
+    padding: 1rem;
+  }
+
+  .form_inputs {
+    width: 100% !important;
+    padding: 1.2rem;
+  }
+}
