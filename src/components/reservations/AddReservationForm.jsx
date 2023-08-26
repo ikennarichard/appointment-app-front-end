@@ -37,7 +37,7 @@ export default function AddReservation() {
   // delete messages after a while
   useEffect(() => {
     if (message || error) {
-      setTimeout(() => dispatch(clearResMessages()), 600);
+      setTimeout(() => dispatch(clearResMessages()), 2000);
       return () => clearTimeout();
     }
   }, [error, message, dispatch]);
@@ -59,19 +59,19 @@ export default function AddReservation() {
         userId,
         selectedCarId,
         details: reservation,
-      }),
+      })
     );
   };
 
   const otherUserCars = cars.filter((car) => car.user_id !== resourceOwner.id);
 
   return (
-    <div id={styles.add_reservation}>
+    <div id={styles['add-reservation']}>
       {message && <p>{message}</p>}
-      {error && <p>{error}</p>}
+      {error && <p className={styles['error-message']}>{error}</p>}
       <h1 className={`text-center display-5 fw-bold ${styles.title}`}>Add Reservation</h1>
-      <form method="post" onSubmit={handleSubmit} className={styles.form_container}>
-        <div className={`d-flex flex-column gap-3 w-50 ${styles.form_inputs}`}>
+      <form method="post" onSubmit={handleSubmit} className={styles['form-container']}>
+        <div className={`d-flex flex-column gap-3 w-50 ${styles['form-inputs']}`}>
           <div>
             <input
               value={reservation.car_model}
@@ -141,7 +141,7 @@ export default function AddReservation() {
           <div>
             <button
               type="submit"
-              className={`p-2 w-100 rounded-1 border-0 ${styles.reservation_submit_btn}`}
+              className={`p-2 w-100 rounded-1 border-0 ${styles['reservation-submit-btn']}`}
             >
               Reserve Car
             </button>
