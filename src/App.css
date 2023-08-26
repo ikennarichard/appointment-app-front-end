@@ -9,6 +9,7 @@
   --main-green: #97bf0f;
   --btn-hover-main-green: #88b100;
   --white: #fff;
+  --icon-color: #d1d1d1;
 }
 
 html,
@@ -20,12 +21,23 @@ body,
 main {
   padding-right: 0 !important;
   flex: 1 0 auto !important;
+  min-height: 100vh;
 }
 
-.text-color-414141 {
+.text_color_414141 {
   color: #414141;
+}
+
+.text_color_BDBDBD {
+  color: #bdbdbd;
 }
 
 img {
   width: 500px;
+}
+
+@media (width <= 992px) {
+  main {
+    margin-bottom: 50px;
+  }
 }
