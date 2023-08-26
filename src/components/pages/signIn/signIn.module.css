@@ -45,7 +45,7 @@
   color: var(--main-green) !important;
 }
 
-@media (max-width: 920px) {
+@media (width <= 920px) {
   .bg {
     background-size: contain;
   }
