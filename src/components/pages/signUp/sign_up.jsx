@@ -114,7 +114,7 @@ export default function SignupForm() {
           />
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" className={`${signInStyles['sign-in-btn']} w-100`}>
+        <button type="submit" className={`${signInStyles.sign_in_btn} w-100`}>
           Sign Up
         </button>
       </form>

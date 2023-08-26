@@ -25,7 +25,7 @@
   gap: 0.5rem;
 }
 
-@media (max-width: 920px) {
+@media (width <= 920px) {
   .bg {
     background-size: contain;
   }
