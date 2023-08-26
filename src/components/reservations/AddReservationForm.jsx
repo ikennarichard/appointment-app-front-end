@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { addReservation } from '../../redux/reservations/apiSlice';
 import { getCars } from '../../redux/cars/apiSlice';
 import { clearResMessages } from '../../redux/reservations/reservationsSlice';
+import styles from './reservations.module.css';
 
 export default function AddReservation() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
@@ -58,79 +59,93 @@ export default function AddReservation() {
         userId,
         selectedCarId,
         details: reservation,
-      }),
+      })
     );
   };
 
   const otherUserCars = cars.filter((car) => car.user_id !== resourceOwner.id);
 
   return (
-    <div>
+    <div id={styles.add_reservation}>
       {message && <p>{message}</p>}
       {error && <p>{error}</p>}
-      <h2>Add Reservation</h2>
-      <form method="post" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="city">
-            City:
+      <h1 className={`text-center display-5 fw-bold ${styles.title}`}>Add Reservation</h1>
+      <form method="post" onSubmit={handleSubmit} className={styles.form_container}>
+        <div className={`d-flex flex-column gap-3 w-50 ${styles.form_inputs}`}>
+          <div>
             <input
               value={reservation.car_model}
               name="city"
               type="text"
               id="city"
+              placeholder="Enter Your City"
               onChange={handleChange}
               required
+              className="p-2 w-100 rounded-1 border-0"
             />
-          </label>
-        </div>
+          </div>
 
-        <div>
-          <label htmlFor="reserve_date">
-            Reserve Date:
+          <div>
             <input
               type="date"
               name="date"
               value={reservation.date}
               id="reserve_date"
+              placeholder="Enter Reserve Date"
               onChange={handleChange}
               required
+              className="p-2 w-100 rounded-1 border-0"
             />
-          </label>
-        </div>
+          </div>
 
-        <div>
-          <label htmlFor="username">
-            Username:
+          <div>
             <input
               type="text"
               name="user_id"
               id="username"
+              placeholder="Enter Your Username"
               value={userName.toUpperCase()}
               readOnly
+              className="p-2 w-100 rounded-1 border-0"
             />
-          </label>
-        </div>
+          </div>
 
-        <div>
-          <label htmlFor="cars">Car details:</label>
-          {state !== null ? (
-            <select name="car_id" id="cars" value={state.id} onChange={handleChange}>
-              <option value={state.id}>{state.car_model}</option>
-            </select>
-          ) : (
-            <select name="car_id" id="cars" onChange={handleChange}>
-              <option value="">Please select a car</option>
-              {otherUserCars.map((car) => (
-                <option key={car.id} value={car.id}>
-                  {car.car_model}
-                </option>
-              ))}
-            </select>
-          )}
-        </div>
+          <div>
+            {state !== null ? (
+              <select
+                name="car_id"
+                id="cars"
+                value={state.id}
+                onChange={handleChange}
+                className="p-2 w-100 rounded-1 border-0"
+              >
+                <option value={state.id}>{state.car_model}</option>
+              </select>
+            ) : (
+              <select
+                name="car_id"
+                id="cars"
+                onChange={handleChange}
+                className="p-2 w-100 rounded-1 border-0"
+              >
+                <option value="">Please select a car</option>
+                {otherUserCars.map((car) => (
+                  <option key={car.id} value={car.id}>
+                    {car.car_model}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
 
-        <div>
-          <button type="submit">Reserve Car</button>
+          <div>
+            <button
+              type="submit"
+              className={`p-2 w-100 rounded-1 border-0 ${styles.reservation_submit_btn}`}
+            >
+              Reserve Car
+            </button>
+          </div>
         </div>
       </form>
     </div>
