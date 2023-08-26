@@ -1,0 +1,61 @@
+#cars-container {
+  margin-top: 15vh;
+}
+
+.text {
+  margin-bottom: 5rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: #252525;
+  color: var(--white);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 25px;
+}
+
+.circle-design {
+  background-color: var(--main-green);
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 83%;
+  height: 83%;
+  object-fit: cover;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.horizontal-line {
+  width: 70%;
+  height: 2px;
+  border: none;
+  background-color: var(--main-green);
+  margin: 0;
+}
+
+.icon-container {
+  width: 40px;
+  border: 2px solid var(--icon-color);
+  border-radius: 100px;
+  padding: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

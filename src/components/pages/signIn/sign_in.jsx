@@ -34,7 +34,7 @@ export default function SignIn() {
     >
       {loading && <div>Loading...</div>}
       <h1 className="text-center text-white display-1 fw-bold">The New BMW Z4</h1>
-      <section className={styles['login-form']}>
+      <section className={styles.login_form}>
         <form method="post" onSubmit={handleSignin} className={styles.form}>
           <div className={styles['input-field']}>
             <input
@@ -59,7 +59,7 @@ export default function SignIn() {
             />
           </div>
           {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit" className={styles['sign-in-btn']}>
+          <button type="submit" className={styles.sign_in_btn}>
             Sign In
           </button>
         </form>

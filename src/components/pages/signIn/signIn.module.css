@@ -3,8 +3,7 @@
   background-size: 1000px;
 }
 
-.login-form {
-  /* background-color: rgba(255, 255, 255, 0.5); */
+.login_form {
   padding: 2rem;
   width: 25%;
 }
@@ -23,7 +22,7 @@
   outline: none;
 }
 
-.sign-in-btn {
+.sign_in_btn {
   background-color: var(--main-green);
   padding: 0.5rem 1.2rem;
   width: 30%;
@@ -36,7 +35,7 @@
   transition: 0.2s ease-in-out;
 }
 
-.sign-in-btn:hover {
+.sign_in_btn:hover {
   background-color: var(--btn-hover-main-green);
 }
 
@@ -45,12 +44,12 @@
   color: var(--main-green) !important;
 }
 
-@media (max-width: 920px) {
+@media (width <= 920px) {
   .bg {
     background-size: contain;
   }
 
-  .login-form {
+  .login_form {
     width: 100%;
   }
 }

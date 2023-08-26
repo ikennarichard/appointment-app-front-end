@@ -21,6 +21,7 @@ nav {
   flex-direction: column;
   gap: 0.5rem;
   padding-left: 1rem;
+  margin: 0;
 }
 
 .nav-item {
@@ -33,10 +34,6 @@ nav {
 .active {
   background-color: #97bf0f;
   color: white;
-}
-
-.text-color-414141 {
-  color: #414141;
 }
 
 .icon-list-item {
@@ -89,6 +86,11 @@ nav {
 }
 
 @media (width <= 992px) {
+  header {
+    width: 100%;
+    min-width: 100% !important;
+  }
+
   .hide-nav {
     transition: 0.5s ease-in-out;
     transform: translateX(-500%);
@@ -100,12 +102,6 @@ nav {
   .show-nav {
     transition: 0.5s ease-in-out;
     transform: translateX(0);
-  }
-}
-
-@media (width <= 450px) {
-  header {
-    width: 100%;
-    min-width: 100% !important;
+    min-height: 100vh;
   }
 }
