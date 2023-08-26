@@ -68,36 +68,33 @@ export default function Car() {
               },
             }}
           >
-            {cars.map((car) => {
-              console.log('CAR', car);
-              return (
-                <SwiperSlide key={car.id}>
-                  <Link
-                    to={`car/${car.id}`}
-                    state={car}
-                    className="w-100 d-inline-block d-flex flex-column justify-content-center align-items-center gap-4 text-decoration-none text-black"
-                  >
-                    <div className="circle-design">
-                      <img src={car.photo} alt={car.car_model} className="image" />
-                    </div>
-                    <h2 className="text-center m-0">{car.car_model}</h2>
-                    <hr className="horizontal-line" />
-                    <p className="m-0 text-break">{car.description}</p>
-                  </Link>
-                  <div className="d-flex justify-content-center align-items-center gap-3 mt-3">
-                    <a href="https://facebook.com" className="icon-container">
-                      <img src={facebook} alt="facebook" className="img-fluid" />
-                    </a>
-                    <a href="https://twitter.com" className="icon-container">
-                      <img src={twitter} alt="twitter" className="img-fluid" />
-                    </a>
-                    <a href="https://instagram.com" className="icon-container">
-                      <img src={instagram} alt="instgram" className="img-fluid" />
-                    </a>
+            {cars.map((car) => (
+              <SwiperSlide key={car.id}>
+                <Link
+                  to={`car/${car.id}`}
+                  state={car}
+                  className="w-100 d-inline-block d-flex flex-column justify-content-center align-items-center gap-4 text-decoration-none text-black"
+                >
+                  <div className="circle-design">
+                    <img src={car.photo} alt={car.car_model} className="image" />
                   </div>
-                </SwiperSlide>
-              );
-            })}
+                  <h2 className="text-center m-0">{car.car_model}</h2>
+                  <hr className="horizontal-line" />
+                  <p className="m-0 text-break">{car.description}</p>
+                </Link>
+                <div className="d-flex justify-content-center align-items-center gap-3 mt-3">
+                  <a href="https://facebook.com" className="icon-container">
+                    <img src={facebook} alt="facebook" className="img-fluid" />
+                  </a>
+                  <a href="https://twitter.com" className="icon-container">
+                    <img src={twitter} alt="twitter" className="img-fluid" />
+                  </a>
+                  <a href="https://instagram.com" className="icon-container">
+                    <img src={instagram} alt="instgram" className="img-fluid" />
+                  </a>
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </section>
       ) : (
