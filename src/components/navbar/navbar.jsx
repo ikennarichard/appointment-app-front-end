@@ -80,7 +80,7 @@ function Navbar() {
               </p>
               <Link
                 to="/"
-                className="text-decoration-none text_color_414141 text-center"
+                className="text-decoration-none text-color-414141 text-center"
                 onClick={showNavbar}
               >
                 <h1 id={`${styles.logo}`}>CARS</h1>
