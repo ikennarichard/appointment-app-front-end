@@ -37,10 +37,10 @@ export default function DeleteCar() {
   const userCars = getUserCars(cars, userId);
 
   return (
-    <div>
+    <div className="container mt-5">
       {loading && <p>Loading...</p>}
-      {message && <p>{message}</p>}
-      {error && <p>{error}</p>}
+      {message && <p className="alert alert-success">{message}</p>}
+      {error && <p className="alert alert-danger">{error}</p>}
       {cars.length === 0 ? (
         <p>No cars available.</p>
       ) : (
@@ -48,25 +48,32 @@ export default function DeleteCar() {
           {userCars.length === 0 ? (
             <p>
               You have no cars.
+              {' '}
               <Link to="/newCar">Add car</Link>
             </p>
           ) : (
-            <ul>
+            <ul className="list-group">
               {userCars.map((car) => (
-                <div key={car.id}>
-                  <br />
-                  <li>
-                    <img src={car.photo} alt={`a nice ${car.car_model}`} />
-                    <p>{car.car_model}</p>
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(car.id)}
-                    >
-                      Delete car
-                    </button>
-                  </li>
-                  <br />
-                </div>
+                <li key={car.id} className="list-group-item">
+                  <div className="d-flex align-items-center">
+                    <img
+                      src={car.photo}
+                      alt={`a nice ${car.car_model}`}
+                      className="mr-3"
+                      style={{ maxWidth: '100px' }}
+                    />
+                    <div>
+                      <h5 className="mb-0 ms-3">{car.car_model}</h5>
+                      <button
+                        type="button"
+                        className="btn btn-danger mt-2 ms-3"
+                        onClick={() => handleDelete(car.id)}
+                      >
+                        Delete car
+                      </button>
+                    </div>
+                  </div>
+                </li>
               ))}
             </ul>
           )}
