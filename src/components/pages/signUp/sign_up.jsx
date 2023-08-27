@@ -60,7 +60,7 @@ export default function SignupForm() {
       <form
         method="post"
         onSubmit={handleSignup}
-        className={`${styles.login_form} d-flex flex-column gap-3`}
+        className={`${styles['login-form']} d-flex flex-column gap-3`}
       >
         <div className={signInStyles['input-field']}>
           <input
@@ -114,13 +114,13 @@ export default function SignupForm() {
           />
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" className={`${signInStyles.sign_in_btn} w-100`}>
+        <button type="submit" className={`${signInStyles['sign-in-btn']} w-100`}>
           Sign Up
         </button>
       </form>
-      <div className={`${styles.sign_in_link} w-25`}>
+      <div className={`${styles['sign-in-link']} w-25`}>
         <p className="mb-0">If your already registerd please use the link below to sign in</p>
-        <Link to="/" className={styles.sign_in_btn}>
+        <Link to="/" className={styles['sign-in-btn']}>
           Sign in
         </Link>
       </div>

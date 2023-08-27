@@ -3,22 +3,22 @@
   background-size: 1000px;
 }
 
-.sign_in_btn {
+.sign-in-btn {
   text-align: start;
   color: var(--white);
   width: 60px;
 }
 
-.sign_in_btn:hover {
+.sign-in-btn:hover {
   color: var(--main-green);
   text-decoration: none;
 }
 
-.login_form {
+.login-form {
   width: 25%;
 }
 
-.sign_in_link {
+.sign-in-link {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -30,12 +30,12 @@
     background-size: contain;
   }
 
-  .login_form {
+  .login-form {
     padding: 0 1.5rem;
     width: 100%;
   }
 
-  .sign_in_link {
+  .sign-in-link {
     width: 100% !important;
     padding: 0 1.5rem;
   }

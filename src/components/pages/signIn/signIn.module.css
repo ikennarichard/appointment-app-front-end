@@ -3,7 +3,7 @@
   background-size: 1000px;
 }
 
-.login_form {
+.login-form {
   padding: 2rem;
   width: 25%;
 }
@@ -22,7 +22,7 @@
   outline: none;
 }
 
-.sign_in_btn {
+.sign-in-btn {
   background-color: var(--main-green);
   padding: 0.5rem 1.2rem;
   width: 30%;
@@ -35,7 +35,7 @@
   transition: 0.2s ease-in-out;
 }
 
-.sign_in_btn:hover {
+.sign-in-btn:hover {
   background-color: var(--btn-hover-main-green);
 }
 
@@ -49,7 +49,7 @@
     background-size: contain;
   }
 
-  .login_form {
+  .login-form {
     width: 100%;
   }
 }

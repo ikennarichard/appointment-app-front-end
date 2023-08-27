@@ -48,7 +48,7 @@ export default function Car() {
         <section className="cars-list-container">
           <div className="text">
             <h1 className="text-center fw-bold m-0 display-5 mb-2 text-uppercase">Latest Models</h1>
-            <p className="text-center text_color_BDBDBD m-0 fs-5">Please select a car</p>
+            <p className="text-center text-color-bdbdbd m-0 fs-5">Please select a car</p>
           </div>
           <Swiper
             modules={[Navigation, Autoplay]}
