@@ -76,7 +76,7 @@
 }
 
 .form-inputs-container {
-  background-color: rgb(50, 50, 50, 0.3);
+  background-color: rgb(50 50 50 / 30%);
   padding: 3rem;
   border-radius: 0.5rem;
 }
