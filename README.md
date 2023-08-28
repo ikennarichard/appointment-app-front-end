@@ -157,7 +157,9 @@ If you like this project give it a star to support it
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank Microverse for all the help they provide.
+- I would like to thank Microverse for all the help they provide.
+- A big thanks to [Murat Korkmaz for his inspiring design on behance](https://www.behance.net/muratk)
+- Big ups as well to the code reviewers for the hard work they put in.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -21,9 +21,8 @@ export default function CarDetails() {
         </div>
         <div className="col-lg-6">
           <h2 className="car_model mb-3">{state.car_model}</h2>
-          {/* <img src={state.photo} alt={`a nice ${state.car_model}`} /> */}
           <p className="mb-4">{state.description}</p>
-          <p className="mb-4">{`Reservation Price: ${state.reservation_price}`}</p>
+          <p className="mb-4">{`Reservation Price: $${state.reservation_price}`}</p>
           <Link
             to="add_reservation"
             className={`btn btn-primary btn-lg ${state.user_id !== resourceOwner.id ? 'd-block mx-auto' : ''}`}
