@@ -6,12 +6,7 @@ import { deleteCar, getCars } from '../../redux/cars/apiSlice';
 import { removeFromCars, clearCarMessages } from '../../redux/cars/carsSlice';
 
 export default function DeleteCar() {
-  const {
-    cars,
-    loading,
-    message,
-    error,
-  } = useSelector((state) => state.cars);
+  const { cars, loading, message, error } = useSelector((state) => state.cars);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const dispatch = useDispatch();
   const userId = resourceOwner.id;
@@ -35,9 +30,8 @@ export default function DeleteCar() {
 
   const getUserCars = (allCars, userId) => allCars.filter((car) => car.user_id === userId);
   const userCars = getUserCars(cars, userId);
-
   return (
-    <div>
+    <div id="delete-car-container">
       {loading && <p>Loading...</p>}
       {message && <p>{message}</p>}
       {error && <p>{error}</p>}
@@ -51,22 +45,21 @@ export default function DeleteCar() {
               <Link to="/newCar">Add car</Link>
             </p>
           ) : (
-            <ul>
+            <ul className="list-unstyled px-5 cars-list">
               {userCars.map((car) => (
-                <div key={car.id}>
-                  <br />
-                  <li>
+                <li key={car.id} className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <div className="delete-image-container">
                     <img src={car.photo} alt={`a nice ${car.car_model}`} />
-                    <p>{car.car_model}</p>
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(car.id)}
-                    >
-                      Delete car
-                    </button>
-                  </li>
-                  <br />
-                </div>
+                  </div>
+                  <p className="fw-bold fs-1">{car.car_model}</p>
+                  <button
+                    className="btn btn-danger"
+                    type="button"
+                    onClick={() => handleDelete(car.id)}
+                  >
+                    Delete car
+                  </button>
+                </li>
               ))}
             </ul>
           )}
