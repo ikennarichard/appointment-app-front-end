@@ -24,7 +24,7 @@ export default function CarDetails() {
           <b>{`Reservation Price: ${state.reservation_price}`}</b>
           <div>
             <Link to="add_reservation" state={details} className="car-details-btn">
-              {state.user_id === resourceOwner.id ? '' : 'Reserve'}
+              Reserve
             </Link>
           </div>
         </div>
