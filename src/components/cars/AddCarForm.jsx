@@ -46,15 +46,15 @@ export default function AddCarForm() {
   }, [error, message, dispatch]);
 
   return (
-    <div id="new-car-container">
+    <div id="new-car-container" className="d-flex flex-column align-items-center mt-5">
       <div className="messages">
         {message && <p>{message}</p>}
         {error && <p>{error}</p>}
         {loading && <p>{loading}</p>}
       </div>
       <h1 className="text-center display-5 fw-bold m-0">Create a New Car</h1>
-      <form onSubmit={handleSubmit} className="form-container">
-        <div className="d-flex flex-column gap-3 w-50 form-inputs-container">
+      <form onSubmit={handleSubmit} className="form-container w-100 d-flex justify-content-center mt-2">
+        <div className="d-flex flex-column gap-3 w-75 form-inputs-container">
           <div className="field">
             <input
               type="text"
