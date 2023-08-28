@@ -1,9 +1,9 @@
 import { useLocation, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 export default function CarDetails() {
   const { state } = useLocation();
-  const resourceOwner = useSelector((state) => state.auth.resource_owner);
+  // const resourceOwner = useSelector((state) => state.auth.resource_owner);
 
   const details = {
     ...state,

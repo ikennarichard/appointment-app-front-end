@@ -6,7 +6,9 @@ import { deleteCar, getCars } from '../../redux/cars/apiSlice';
 import { removeFromCars, clearCarMessages } from '../../redux/cars/carsSlice';
 
 export default function DeleteCar() {
-  const { cars, loading, message, error } = useSelector((state) => state.cars);
+  const {
+    cars, loading, message, error,
+  } = useSelector((state) => state.cars);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const dispatch = useDispatch();
   const userId = resourceOwner.id;
