@@ -21,7 +21,7 @@ function Navbar() {
 
   const showNavbar = () => {
     setIsNavbar(!isNavbar);
-    document.body.style.overflow = !isNavbar ? 'hidden' : 'visible';
+    // document.body.style.overflow = !isNavbar ? 'hidden' : 'visible';
   };
 
   const signOut = () => {
