@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signup, clearMessage } from '../../../redux/auth/authSlice';
+import { clearMessage } from '../../../redux/auth/authSlice';
+import { signup } from '../../../redux/auth/apiSlice';
 import styles from './signUp.module.css';
 import signInStyles from '../signIn/signIn.module.css';
 
@@ -59,7 +60,7 @@ export default function SignupForm() {
       <form
         method="post"
         onSubmit={handleSignup}
-        className={`${styles.login_form} d-flex flex-column gap-3`}
+        className={`${styles['login-form']} d-flex flex-column gap-3`}
       >
         <div className={signInStyles['input-field']}>
           <input
@@ -117,9 +118,9 @@ export default function SignupForm() {
           Sign Up
         </button>
       </form>
-      <div className={`${styles.sign_in_link} w-25`}>
+      <div className={`${styles['sign-in-link']} w-25`}>
         <p className="mb-0">If your already registerd please use the link below to sign in</p>
-        <Link to="/" className={styles.sign_in_btn}>
+        <Link to="/" className={styles['sign-in-btn']}>
           Sign in
         </Link>
       </div>

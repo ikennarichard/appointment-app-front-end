@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getReservations } from '../../redux/reservations/apiSlice';
 import { getCars } from '../../redux/cars/apiSlice';
+import styles from './reservations.module.css';
 import CentralComponent from '../Layout/CentralComponent';
 
 export default function Reservation() {
@@ -35,35 +36,42 @@ export default function Reservation() {
   const isLoading = loading && <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="mt-5 d-flex flex-column gap-4">
+      <h1 className="text-center fw-bold display-5">Reservations</h1>
       <CentralComponent />
-      <h3>Reservations</h3>
       {isLoading && <div>Loading...</div>}
       {reservations.length === 0 ? (
         <div>
-          No reservations
-          click link to
+          No reservations click link to
           <Link to="/newReservation">Add Reservation</Link>
         </div>
       ) : (
-        <ul>
+        <ul className="list-unstyled px-lg-5 px-3">
           {reservations.map((item) => (
-            <li key={item.id}>
-              <div>
+            <li key={item.id} className={styles['reservation-item']}>
+              <div className={styles['image-container']}>
                 <img
                   src={`${reservedCarPhotos[item.car_id]}`}
                   alt={`a nice ${reservedCars[item.car_id]}`}
+                  className={styles.image}
                 />
-                <p>{item.city}</p>
-                <p>{item.date}</p>
-                <p>{reservedCars[item.car_id]}</p>
               </div>
-              <br />
+              <div className={styles['reservation-details']}>
+                <p className="m-0 fs-1 fw-bold">{reservedCars[item.car_id]}</p>
+                <hr className={styles['horizontal-line']} />
+                <div className="m-0">
+                  <span>City: </span>
+                  <span>{item.city}</span>
+                </div>
+                <div className="m-0 text-break">
+                  <span>Reservation Date: </span>
+                  <span>{item.date}</span>
+                </div>
+              </div>
             </li>
           ))}
         </ul>
       )}
     </div>
-
   );
 }

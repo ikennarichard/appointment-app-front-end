@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetTokens, getUsername } from '../../redux/auth/authSlice';
+import { resetTokens } from '../../redux/auth/authSlice';
+import { getUsername } from '../../redux/auth/apiSlice';
 import styles from './navbar.module.css';
 import twitterIcon from '../../assets/twitter.svg';
 import facebookIcon from '../../assets/facebook.svg';
@@ -16,14 +17,16 @@ function Navbar() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const username = useSelector((state) => state.auth.username);
   const dispatch = useDispatch();
+  const navigation = useNavigate();
 
   const showNavbar = () => {
     setIsNavbar(!isNavbar);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = !isNavbar ? 'hidden' : 'visible';
   };
 
   const signOut = () => {
     dispatch(resetTokens());
+    navigation('/');
   };
 
   useEffect(() => {
@@ -32,25 +35,31 @@ function Navbar() {
   });
 
   const classes = {
-    header: `${isNavbar ? styles['show-nav'] : styles['hide-nav']} h-100 col-lg-1`,
+    header: `${isNavbar ? styles['show-nav'] : styles['hide-nav']} col-lg-1`,
     button: `${styles['nav-btn']} d-lg-none `,
     routes: {
-      '/': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/' ? styles.active : ''
+      '/': `d-block text-decoration-none ${styles['nav-item']} ${
+        pathname === '/' ? styles.active : ''
       }`,
 
-      '/newReservation': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/newReservation' ? styles.active : ''
+      '/newReservation': `d-block text-decoration-none ${styles['nav-item']} ${
+        pathname === '/newReservation' ? styles.active : ''
       }`,
 
-      '/reservations': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/reservations' ? styles.active : ''
+      '/reservations': `d-block text-decoration-none ${styles['nav-item']} ${
+        pathname === '/reservations' ? styles.active : ''
       }`,
 
-      '/newCar': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/newCar' ? styles.active : ''
+      '/newCar': `d-block text-decoration-none ${styles['nav-item']} ${
+        pathname === '/newCar' ? styles.active : ''
       }`,
 
-      '/deleteCar': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/deleteCar' ? styles.active : ''
+      '/deleteCar': `d-block text-decoration-none ${styles['nav-item']} ${
+        pathname === '/deleteCar' ? styles.active : ''
       }`,
 
-      '/signout': `d-block text-decoration-none ${styles['nav-item']} ${pathname === '/signout' ? styles.active : ''
+      '/signout': `d-block text-decoration-none ${styles['nav-item']} ${
+        pathname === '/signout' ? styles.active : ''
       }`,
     },
   };
@@ -63,11 +72,10 @@ function Navbar() {
       </button>
       <header className={classes.header}>
         <nav className="d-flex flex-column justify-content-between h-100">
-          <div className="d-flex flex-column ">
+          <div className="d-flex flex-column gap-5">
             <div className="text-center mt-4">
               <p>
                 Hello,
-                {' '}
                 {username && username.charAt(0).toUpperCase() + username.slice(1)}
               </p>
               <Link
@@ -81,11 +89,7 @@ function Navbar() {
             <ul className={`list-unstyled ${styles['nav-items']}`}>
               {navLinks.map((link) => (
                 <li key={link.id}>
-                  <Link
-                    to={link.route}
-                    className={classes.routes[link.route]}
-                    onClick={showNavbar}
-                  >
+                  <Link to={link.route} className={classes.routes[link.route]} onClick={showNavbar}>
                     {link.name.toUpperCase()}
                   </Link>
                 </li>

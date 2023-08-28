@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddCarForm component matches snapshot 1`] = `
+<div>
+  <div
+    className="messages"
+  />
+  <h2>
+    Create a New Car
+  </h2>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="field"
+    >
+      <label
+        htmlFor="car_model"
+      >
+        Car Model:
+        <input
+          id="car_model"
+          name="car_model"
+          onChange={[Function]}
+          required={true}
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <br />
+    <div
+      className="field"
+    >
+      <label
+        htmlFor="description"
+      >
+        Description:
+        <textarea
+          id="description"
+          name="description"
+          onChange={[Function]}
+          required={true}
+          value=""
+        />
+      </label>
+    </div>
+    <br />
+    <div
+      className="field"
+    >
+      <label
+        htmlFor="photo"
+      >
+        Photo URL:
+        <input
+          id="photo"
+          name="photo"
+          onChange={[Function]}
+          placeholder="Enter a valid image url"
+          required={true}
+          type="text"
+          value=""
+        />
+      </label>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        htmlFor="reservation_price"
+      >
+        Reservation Price:
+        <input
+          id="reservation_price"
+          name="reservation_price"
+          onChange={[Function]}
+          required={true}
+          type="number"
+          value={0}
+        />
+      </label>
+    </div>
+    <button
+      type="submit"
+    >
+      Add Car
+    </button>
+  </form>
+</div>
+`;

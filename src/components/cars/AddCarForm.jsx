@@ -47,69 +47,67 @@ export default function AddCarForm() {
   }, [error, message, dispatch]);
 
   return (
-    <div>
+    <div id="new-car-container" className="d-flex flex-column align-items-center mt-5">
       <CentralComponent />
       <div className="messages">
         {message && <p>{message}</p>}
         {error && <p>{error}</p>}
         {loading && <p>{loading}</p>}
       </div>
-      <h2>Create a New Car</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="field">
-          <label htmlFor="car_model">
-            Car Model:
+      <h1 className="text-center display-5 fw-bold m-0">Create a New Car</h1>
+      <form onSubmit={handleSubmit} className="form-container w-100 d-flex justify-content-center mt-2">
+        <div className="d-flex flex-column gap-3 w-75 form-inputs-container">
+          <div className="field">
             <input
               type="text"
               name="car_model"
               value={carDetails.car_model}
               onChange={handleChange}
               id="car_model"
+              placeholder="Enter Car Model"
               required
+              className="p-2 w-100 rounded-1 border-0"
             />
-          </label>
-        </div>
-        <br />
-        <div className="field">
-          <label htmlFor="description">
-            Description:
+          </div>
+          <div className="field">
             <textarea
               name="description"
               value={carDetails.description}
               onChange={handleChange}
               id="description"
               required
+              placeholder="Enter Description"
+              className="p-2 w-100 rounded-1 border-0"
             />
-          </label>
-        </div>
-        <br />
-        <div className="field">
-          <label htmlFor="photo">
-            Photo URL:
+          </div>
+          <div className="field">
             <input
               type="text"
               name="photo"
               value={carDetails.photo}
               onChange={handleChange}
-              placeholder="Enter a valid image url"
+              placeholder="Enter a Valid Image URL"
               id="photo"
               required
+              className="p-2 w-100 rounded-1 border-0"
             />
-          </label>
-        </div>
-        <div className="field">
-          <label htmlFor="reservation_price">
-            Reservation Price:
+          </div>
+          <div className="field">
             <input
               type="number"
               name="reservation_price"
+              id="reservation_price"
+              placeholder="Enter Reservation Price"
               value={carDetails.reservation_price}
               onChange={handleChange}
               required
+              className="p-2 w-100 rounded-1 border-0"
             />
-          </label>
+          </div>
+          <button type="submit" className="p-2 w-100 rounded-1 border-0 add-car-btn">
+            Add Car
+          </button>
         </div>
-        <button type="submit">Add Car</button>
       </form>
     </div>
   );

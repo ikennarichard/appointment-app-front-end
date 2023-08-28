@@ -4,9 +4,9 @@
 }
 
 .login-form {
-  /* background-color: rgba(255, 255, 255, 0.5); */
   padding: 2rem;
   width: 25%;
+  min-width: 370px;
 }
 
 .form {
@@ -45,12 +45,20 @@
   color: var(--main-green) !important;
 }
 
-@media (max-width: 920px) {
+@media (width <= 1024px) {
   .bg {
     background-size: contain;
   }
 
   .login-form {
-    width: 100%;
+    width: 50%;
+  }
+}
+
+@media (width <= 400px) {
+  .sign-in-title {
+    font-size: 4rem;
+
+    /* padding: 1rem; */
   }
 }

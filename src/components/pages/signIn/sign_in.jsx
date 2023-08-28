@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signin } from '../../../redux/auth/authSlice';
+import { signin } from '../../../redux/auth/apiSlice';
 import styles from './signIn.module.css';
 
 export default function SignIn() {
@@ -33,7 +33,9 @@ export default function SignIn() {
       className={`${styles.bg} h-100 d-flex justify-content-center align-items-center flex-column`}
     >
       {loading && <div>Loading...</div>}
-      <h1 className="text-center text-white display-1 fw-bold">The New BMW Z4</h1>
+      <h1 className={`text-center text-white display-1 fw-bold ${styles['sign-in-title']}`}>
+        The New BMW Z4
+      </h1>
       <section className={styles['login-form']}>
         <form method="post" onSubmit={handleSignin} className={styles.form}>
           <div className={styles['input-field']}>

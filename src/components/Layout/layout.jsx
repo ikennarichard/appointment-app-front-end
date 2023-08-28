@@ -24,11 +24,11 @@ function Layout() {
 
   if (resourceOwner) {
     return (
-      <div className="container-fluid h-100">
-        <CentralComponent />
-        <div className="row h-100">
+      <div className="container-fluid">
+        <div className="row">
+          <CentralComponent />
           <Navbar />
-          <main className="col-12 col-lg-9 col-md-7">
+          <main className="col-12 col-lg-9 col-md-7 p-0">
             <Outlet />
           </main>
         </div>

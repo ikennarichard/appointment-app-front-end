@@ -1,0 +1,138 @@
+#cars-container {
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+}
+
+.text {
+  margin-bottom: 5rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: #252525;
+  color: var(--white);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 25px;
+}
+
+.circle-design {
+  background-color: var(--main-green);
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 83%;
+  height: 83%;
+  object-fit: cover;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.horizontal-line {
+  width: 70%;
+  height: 2px;
+  border: none;
+  background-color: var(--main-green);
+  margin: 0;
+}
+
+.icon-container {
+  width: 40px;
+  border: 2px solid var(--icon-color);
+  border-radius: 100px;
+  padding: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#delete-car-container {
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+}
+
+.cars-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.cars-list li {
+  background-color: var(--main-green);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  flex-grow: 1;
+}
+
+.delete-image-container {
+  height: 200px;
+}
+
+.delete-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#car-details-container {
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+}
+
+#car-details-container h1 {
+  font-size: 3rem;
+}
+
+.show-car-image-container {
+  width: 100%;
+  height: 500px;
+}
+
+.show-car-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.car-details-btn {
+  text-decoration: none;
+  color: white;
+  background-color: var(--main-green);
+  padding: 12px;
+  display: inline-block;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@media (width <= 1024px) {
+  .cars-list {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (width <= 768px) {
+  .cars-list {
+    padding: 1.2rem !important;
+  }
+
+  .show-car-image-container {
+    height: 300px;
+  }
+}

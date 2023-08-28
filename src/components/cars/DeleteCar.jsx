@@ -8,10 +8,7 @@ import CentralComponent from '../Layout/CentralComponent';
 
 export default function DeleteCar() {
   const {
-    cars,
-    loading,
-    message,
-    error,
+    cars, loading, message, error,
   } = useSelector((state) => state.cars);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const dispatch = useDispatch();
@@ -36,13 +33,12 @@ export default function DeleteCar() {
 
   const getUserCars = (allCars, userId) => allCars.filter((car) => car.user_id === userId);
   const userCars = getUserCars(cars, userId);
-
   return (
-    <div>
+    <div id="delete-car-container">
       <CentralComponent />
       {loading && <p>Loading...</p>}
-      {message && <p>{message}</p>}
-      {error && <p>{error}</p>}
+      {message && <p className="alert alert-success">{message}</p>}
+      {error && <p className="alert alert-danger">{error}</p>}
       {cars.length === 0 ? (
         <p>No cars available.</p>
       ) : (
@@ -50,25 +46,25 @@ export default function DeleteCar() {
           {userCars.length === 0 ? (
             <p>
               You have no cars.
+              {' '}
               <Link to="/newCar">Add car</Link>
             </p>
           ) : (
-            <ul>
+            <ul className="list-unstyled px-5 cars-list">
               {userCars.map((car) => (
-                <div key={car.id}>
-                  <br />
-                  <li>
+                <li key={car.id} className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <div className="delete-image-container">
                     <img src={car.photo} alt={`a nice ${car.car_model}`} />
-                    <p>{car.car_model}</p>
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(car.id)}
-                    >
-                      Delete car
-                    </button>
-                  </li>
-                  <br />
-                </div>
+                  </div>
+                  <p className="fw-bold fs-1">{car.car_model}</p>
+                  <button
+                    className="btn btn-danger"
+                    type="button"
+                    onClick={() => handleDelete(car.id)}
+                  >
+                    Delete car
+                  </button>
+                </li>
               ))}
             </ul>
           )}
