@@ -35,8 +35,8 @@ export default function DeleteCar() {
   return (
     <div id="delete-car-container">
       {loading && <p>Loading...</p>}
-      {message && <p>{message}</p>}
-      {error && <p>{error}</p>}
+      {message && <p className="alert alert-success">{message}</p>}
+      {error && <p className="alert alert-danger">{error}</p>}
       {cars.length === 0 ? (
         <p>No cars available.</p>
       ) : (
@@ -44,6 +44,7 @@ export default function DeleteCar() {
           {userCars.length === 0 ? (
             <p>
               You have no cars.
+              {' '}
               <Link to="/newCar">Add car</Link>
             </p>
           ) : (
