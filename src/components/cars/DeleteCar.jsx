@@ -4,13 +4,11 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { deleteCar, getCars } from '../../redux/cars/apiSlice';
 import { removeFromCars, clearCarMessages } from '../../redux/cars/carsSlice';
+import CentralComponent from '../Layout/CentralComponent';
 
 export default function DeleteCar() {
   const {
-    cars,
-    loading,
-    message,
-    error,
+    cars, loading, message, error,
   } = useSelector((state) => state.cars);
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
   const dispatch = useDispatch();
@@ -35,9 +33,9 @@ export default function DeleteCar() {
 
   const getUserCars = (allCars, userId) => allCars.filter((car) => car.user_id === userId);
   const userCars = getUserCars(cars, userId);
-
   return (
-    <div className="container mt-5">
+    <div id="delete-car-container">
+      <CentralComponent />
       {loading && <p>Loading...</p>}
       {message && <p className="alert alert-success">{message}</p>}
       {error && <p className="alert alert-danger">{error}</p>}
@@ -52,27 +50,20 @@ export default function DeleteCar() {
               <Link to="/newCar">Add car</Link>
             </p>
           ) : (
-            <ul className="list-group">
+            <ul className="list-unstyled px-5 cars-list">
               {userCars.map((car) => (
-                <li key={car.id} className="list-group-item">
-                  <div className="d-flex align-items-center">
-                    <img
-                      src={car.photo}
-                      alt={`a nice ${car.car_model}`}
-                      className="mr-3"
-                      style={{ maxWidth: '100px' }}
-                    />
-                    <div>
-                      <h5 className="mb-0 ms-3">{car.car_model}</h5>
-                      <button
-                        type="button"
-                        className="btn btn-danger mt-2 ms-3"
-                        onClick={() => handleDelete(car.id)}
-                      >
-                        Delete car
-                      </button>
-                    </div>
+                <li key={car.id} className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <div className="delete-image-container">
+                    <img src={car.photo} alt={`a nice ${car.car_model}`} />
                   </div>
+                  <p className="fw-bold fs-1">{car.car_model}</p>
+                  <button
+                    className="btn btn-danger"
+                    type="button"
+                    onClick={() => handleDelete(car.id)}
+                  >
+                    Delete car
+                  </button>
                 </li>
               ))}
             </ul>

@@ -7,6 +7,7 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import { getCars } from '../../redux/cars/apiSlice';
 import { clearCarMessages } from '../../redux/cars/carsSlice';
 import { getUsername } from '../../redux/auth/apiSlice';
+import CentralComponent from '../Layout/CentralComponent';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './cars.css';
@@ -42,6 +43,7 @@ export default function Car() {
 
   return (
     <div id="cars-container">
+      <CentralComponent />
       {isLoading}
       {message && <p>{message}</p>}
       {resourceOwner && cars.length > 0 ? (
