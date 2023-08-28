@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getReservations } from '../../redux/reservations/apiSlice';
 import { getCars } from '../../redux/cars/apiSlice';
 import styles from './reservations.module.css';
+import CentralComponent from '../Layout/CentralComponent';
 
 export default function Reservation() {
   const { reservations, loading } = useSelector((state) => state.reservation);
@@ -37,6 +38,7 @@ export default function Reservation() {
   return (
     <div className="mt-5 d-flex flex-column gap-4">
       <h1 className="text-center fw-bold display-5">Reservations</h1>
+      <CentralComponent />
       {isLoading && <div>Loading...</div>}
       {reservations.length === 0 ? (
         <div>

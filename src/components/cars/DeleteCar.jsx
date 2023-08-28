@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { deleteCar, getCars } from '../../redux/cars/apiSlice';
 import { removeFromCars, clearCarMessages } from '../../redux/cars/carsSlice';
+import CentralComponent from '../Layout/CentralComponent';
 
 export default function DeleteCar() {
   const {
@@ -34,6 +35,7 @@ export default function DeleteCar() {
   const userCars = getUserCars(cars, userId);
   return (
     <div id="delete-car-container">
+      <CentralComponent />
       {loading && <p>Loading...</p>}
       {message && <p className="alert alert-success">{message}</p>}
       {error && <p className="alert alert-danger">{error}</p>}

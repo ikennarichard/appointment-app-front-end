@@ -7,6 +7,7 @@ import { addReservation } from '../../redux/reservations/apiSlice';
 import { getCars } from '../../redux/cars/apiSlice';
 import { clearResMessages } from '../../redux/reservations/reservationsSlice';
 import styles from './reservations.module.css';
+import CentralComponent from '../Layout/CentralComponent';
 
 export default function AddReservation() {
   const resourceOwner = useSelector((state) => state.auth.resource_owner);
@@ -67,6 +68,7 @@ export default function AddReservation() {
 
   return (
     <div id={styles['add-reservation']}>
+      <CentralComponent />
       {message && <p>{message}</p>}
       {error && <p className={styles['error-message']}>{error}</p>}
       <h1 className={`text-center display-5 fw-bold ${styles.title}`}>Add Reservation</h1>

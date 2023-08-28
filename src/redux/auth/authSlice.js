@@ -18,6 +18,7 @@ const authSlice = createSlice({
       localStorage.removeItem('resource_owner');
       localStorage.removeItem('resource_name');
       localStorage.removeItem('access_token');
+      localStorage.removeItem('expires_in'); // added this so that it removes the expires_in from local storage on logout.
       state.username = null;
       state.error = null;
       state.message = null;
@@ -43,6 +44,7 @@ const authSlice = createSlice({
         localStorage.setItem('resource_owner', JSON.stringify(resource_owner));
         localStorage.setItem('refresh_token', refresh_token);
         localStorage.setItem('access_token', token);
+        localStorage.setItem('expires_in', Date.now() + 3600000); // added this, converts miliseconds to hours, one hour in this case.
         state.resource_owner = resource_owner;
         state.loading = false;
         state.error = null;
@@ -60,6 +62,7 @@ const authSlice = createSlice({
         localStorage.setItem('resource_owner', JSON.stringify(resource_owner));
         localStorage.setItem('refresh_token', refresh_token);
         localStorage.setItem('access_token', token);
+        localStorage.setItem('expires_in', Date.now() + 3600000); // added this converts miliseconds to hours, one hour in this case.
         state.resource_owner = resource_owner;
         state.loading = false;
       })
