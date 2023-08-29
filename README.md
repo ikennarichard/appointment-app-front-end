@@ -5,6 +5,7 @@
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
+  - [📅 Kanban Board](#kanban-board)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
@@ -27,7 +28,17 @@
 
 # 📖 Appointment App Front-End <a name="about-project"></a>
 
-**Appointment App Front-End** is an app to book appointment to try cars
+**Appointment App Front-End**  is a platform that puts the power of car rental in your hands. You have the flexibility to either rent a car or list your own vehicle for others to rent, Built with Rails and React.
+
+<!-- KANBAN BOARD -->
+
+## 📅 Kanban Board <a name="kanban-board"></a>
+
+- [Frontend Kanban](https://github.com/ikennarichard/appointment-app-front-end/projects/1)
+
+<img width="1236" alt="Screenshot 2023-08-16 at 17 14 13" src="https://github.com/ikennarichard/appointment-app-front-end/assets/69506217/0507a8b6-68ac-45c3-93a7-37822e1077e4">
+
+- We are a team of 4 for this project.
 
 ## 🛠 Built With <a name="built-with"></a>
 
