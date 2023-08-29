@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddCarForm component matches snapshot 1`] = `
+<div
+  className="d-flex flex-column align-items-center mt-5"
+  id="new-car-container"
+>
+  <div
+    className="messages"
+  />
+  <h1
+    className="text-center display-5 fw-bold m-0"
+  >
+    Create a New Car
+  </h1>
+  <form
+    className="form-container w-100 d-flex justify-content-center mt-2"
+    onSubmit={[Function]}
+  >
+    <div
+      className="d-flex flex-column gap-3 w-75 form-inputs-container"
+    >
+      <div
+        className="field"
+      >
+        <input
+          className="p-2 w-100 rounded-1 border-0"
+          id="car_model"
+          name="car_model"
+          onChange={[Function]}
+          placeholder="Enter Car Model"
+          required={true}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="field"
+      >
+        <textarea
+          className="p-2 w-100 rounded-1 border-0"
+          id="description"
+          name="description"
+          onChange={[Function]}
+          placeholder="Enter Description"
+          required={true}
+          value=""
+        />
+      </div>
+      <div
+        className="field"
+      >
+        <input
+          className="p-2 w-100 rounded-1 border-0"
+          id="photo"
+          name="photo"
+          onChange={[Function]}
+          placeholder="Enter a Valid Image URL"
+          required={true}
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        className="field"
+      >
+        <input
+          className="p-2 w-100 rounded-1 border-0"
+          id="reservation_price"
+          name="reservation_price"
+          onChange={[Function]}
+          placeholder="Enter Reservation Price"
+          required={true}
+          type="number"
+          value={0}
+        />
+      </div>
+      <button
+        className="p-2 w-100 rounded-1 border-0 add-car-btn"
+        type="submit"
+      >
+        Add Car
+      </button>
+    </div>
+  </form>
+</div>
+`;

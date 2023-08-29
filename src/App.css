@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+:root {
+  --main-green: #97bf0f;
+  --btn-hover-main-green: #88b100;
+  --white: #fff;
+  --icon-color: #d1d1d1;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+main {
+  padding-right: 0 !important;
+  flex: 1 0 auto !important;
+  min-height: 100vh;
+}
+
+.text-color-414141 {
+  color: #414141;
+}
+
+.text-color-bdbdbd {
+  color: #bdbdbd;
+}
+
+img {
+  width: 500px;
+}
+
+@media (width <= 992px) {
+  main {
+    margin-bottom: 50px;
+  }
+}

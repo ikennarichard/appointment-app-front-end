@@ -1,0 +1,107 @@
+header {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  width: 11% !important;
+  min-width: 210px !important;
+  transition: 0.2s ease-out;
+}
+
+#logo {
+  font-family: Arizonia, cursive !important;
+  font-size: 2.5rem;
+}
+
+nav {
+  border-right: 2px solid #efefef;
+  transition: 1s ease-in-out;
+}
+
+.nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.nav-item {
+  color: black;
+  font-weight: bolder;
+  padding: 0.8rem 2rem 0.8rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.active {
+  background-color: #97bf0f;
+  color: white;
+}
+
+.icon-list-item {
+  flex: 1 0 auto;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+}
+
+.icon-list-item img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.nav-btn {
+  width: 45px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 100;
+}
+
+.burger-btn-span {
+  width: 35px;
+  height: 9px;
+  background-color: black;
+  border-radius: 100px;
+}
+
+.sign-out-btn {
+  appearance: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.sign-out-btn:hover {
+  background-color: #97bf0f;
+  color: white;
+}
+
+@media (width <= 992px) {
+  header {
+    width: 100%;
+    min-width: 100% !important;
+  }
+
+  .hide-nav {
+    transition: 0.5s ease-in-out;
+    transform: translateX(-500%);
+    position: absolute;
+    top: 0;
+    z-index: 10;
+  }
+
+  .show-nav {
+    transition: 0.5s ease-in-out;
+    transform: translateX(0);
+    min-height: 100vh;
+  }
+}
