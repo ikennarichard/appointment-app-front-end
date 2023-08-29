@@ -14,6 +14,7 @@
   - [Setup](#setup)
   - [Install](#install)
   - [Usage](#usage)
+  - [Run Tests](#run-tests)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -78,11 +79,11 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:
 
-```
+```sh
   git clone https://github.com/ikennarichard/appointment-app-front-end.git
 ```
 
-```
+```sh
   cd appointment-app-front-end
 ```
 
@@ -90,7 +91,7 @@ Clone this repository to your desired folder:
 
 Install this project with:
 
-```
+```sh
   yarn
 ```
 
@@ -98,8 +99,16 @@ Install this project with:
 
 To run the project, execute the following command:
 
-```
+```sh
   yarn dev
+```
+
+### Run Tests
+
+To run tests, execute the following command:
+
+```sh
+yarn test
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
