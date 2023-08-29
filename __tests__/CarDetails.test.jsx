@@ -32,7 +32,7 @@ describe('CarDetails component', () => {
 
     expect(getByText('Audi')).toBeInTheDocument();
     expect(getByText(/car description/i)).toBeInTheDocument();
-    expect(getByText('Reservation Price: 100')).toBeInTheDocument();
+    expect(getByText('Reservation Price: $100')).toBeInTheDocument();
   });
 
   it('does not render Reserve button for the car owner', () => {

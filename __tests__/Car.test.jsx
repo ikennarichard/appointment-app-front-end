@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -5,6 +6,21 @@ import { useDispatch as useDispatchMock, useSelector as useSelectorMock } from '
 import Car from '../src/components/cars/Cars';
 
 jest.mock('react-redux');
+
+jest.mock('swiper/react', () => ({
+  Swiper: ({ children }) => <div data-testid="swiper-testid">{children}</div>,
+  SwiperSlide: ({ children }) => (
+    <div data-testid="swiper-slide-testid">{children}</div>
+  ),
+}));
+
+jest.mock('swiper/modules', () => ({
+  Navigation: () => null,
+  Autoplay: () => null,
+}));
+
+jest.mock('swiper/css', () => jest.fn());
+jest.mock('swiper/css/navigation', () => jest.fn());
 
 const useDispatch = useDispatchMock;
 const useSelector = useSelectorMock;
