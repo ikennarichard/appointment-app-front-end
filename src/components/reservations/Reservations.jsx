@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getReservations } from '../../redux/reservations/apiSlice';
+import { getReservations, deleteReservation } from '../../redux/reservations/apiSlice';
+import { removeFromReservations } from '../../redux/reservations/reservationsSlice';
 import { getCars } from '../../redux/cars/apiSlice';
 import styles from './reservations.module.css';
 import CentralComponent from '../Layout/CentralComponent';
@@ -21,6 +22,11 @@ export default function Reservation() {
     dispatch(getReservations(resourceOwner.id));
     dispatch(getCars(userId));
   }, [dispatch, userId, resourceOwner]);
+
+  const handleDelete = (userId, reservationId) => {
+    dispatch(deleteReservation({ userId, reservationId }));
+    dispatch(removeFromReservations(reservationId));
+  };
 
   useEffect(() => {
     const carDetails = {};
@@ -67,6 +73,13 @@ export default function Reservation() {
                   <span>Reservation Date: </span>
                   <span>{item.date}</span>
                 </div>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => handleDelete(resourceOwner.id, item.id)}
+                >
+                  Delete
+                </button>
               </div>
             </li>
           ))}
