@@ -31,7 +31,7 @@ export const addReservation = createAsyncThunk(
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
-        }
+        },
       );
       if (response.status === 201) {
         return response.data;
@@ -40,7 +40,7 @@ export const addReservation = createAsyncThunk(
       console.error(error);
       throw new Error('An error ocuured while reserving car');
     }
-  }
+  },
 );
 
 export const deleteReservation = createAsyncThunk(
@@ -54,7 +54,7 @@ export const deleteReservation = createAsyncThunk(
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
-        }
+        },
       );
       if (response.statusText === 'OK') {
         return 'Reservation deleted successfully';
@@ -63,5 +63,5 @@ export const deleteReservation = createAsyncThunk(
       console.error(error);
       throw new Error('An error occured while deleting reservation');
     }
-  }
+  },
 );
