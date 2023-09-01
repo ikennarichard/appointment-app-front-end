@@ -53,12 +53,27 @@
   </ul>
 </details>
 
+<details>
+  <summary>Server</summary>
+  <ul>
+    <li><a href="https://rubyonrails.org">Rails</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>Database</summary>
+  <ul>
+    <li><a href="https://www.postgresql.org">PostgreSQL</a></li>
+  </ul>
+</details>
+
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
 - **Reserve a car to tryout**
 - **Showcase list of cars**
+- **Add a car so others can reserve**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
